@@ -29,9 +29,9 @@
 
 ## Commit Conventions
 
-- Every commit message must use a lowercase prefix followed by a semicolon and a space.
-- Valid prefixes: `feat; `, `fix; `, `chore; `, `refactor; `, `docs; `, `style; `, `test; `, etc.
-- Example: `feat; add user authentication flow`
+- Every commit message must use a lowercase prefix followed by a colon and a space.
+- Valid prefixes: `feat: `, `fix: `, `chore: `, `refactor: `, `docs: `, `style: `, `test: `, etc.
+- Example: `feat: add user authentication flow`
 
 ## Architecture
 
