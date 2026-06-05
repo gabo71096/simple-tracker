@@ -24,3 +24,7 @@ next-env.d.ts
 *.njsproj
 *.sln
 *.sw?
+
+# next-video — keep source videos out of git, but commit JSON metadata
+videos/*
+!videos/*.json
