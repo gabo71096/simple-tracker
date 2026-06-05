@@ -9,7 +9,7 @@ export function useTimeTracker() {
 
   const today = new Date().toISOString().split('T')[0]
 
-  const loadTodayEntries = useCallback(async () => {
+  const refresh = useCallback(async () => {
     const todayEntries = await getEntriesByDate(today)
     setEntries(todayEntries)
 
@@ -23,32 +23,47 @@ export function useTimeTracker() {
   }, [today])
 
   useEffect(() => {
-    loadTodayEntries()
-  }, [loadTodayEntries])
+    let cancelled = false
+    const load = async () => {
+      const todayEntries = await getEntriesByDate(today)
+      if (cancelled) return
+      setEntries(todayEntries)
+
+      if (todayEntries.length === 0) {
+        setStatus('checked-out')
+      } else {
+        const last = todayEntries[todayEntries.length - 1]
+        setStatus(mapTypeToStatus(last.type))
+      }
+      setLoading(false)
+    }
+    load()
+    return () => { cancelled = true }
+  }, [today])
 
   const addEntry = useCallback(
     async (type: TimeEntryType, latitude?: number, longitude?: number) => {
       const entry = await addEntryService(type, { latitude, longitude })
-      await loadTodayEntries()
+      await refresh()
       return entry
     },
-    [loadTodayEntries]
+    [refresh]
   )
 
   const updateEntry = useCallback(
     async (id: number, timestamp: Date) => {
       await updateEntryTimestamp(id, timestamp)
-      await loadTodayEntries()
+      await refresh()
     },
-    [loadTodayEntries]
+    [refresh]
   )
 
   const deleteEntry = useCallback(
     async (id: number) => {
       await deleteEntryService(id)
-      await loadTodayEntries()
+      await refresh()
     },
-    [loadTodayEntries]
+    [refresh]
   )
 
   return {
@@ -58,7 +73,7 @@ export function useTimeTracker() {
     addEntry,
     updateEntry,
     deleteEntry,
-    refresh: loadTodayEntries,
+    refresh,
   }
 }
 

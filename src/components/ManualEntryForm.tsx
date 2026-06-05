@@ -56,12 +56,14 @@ export function ManualEntryForm({ onAdded }: ManualEntryFormProps) {
 
   return (
     <Dialog open={open} onOpenChange={setOpen}>
-      <DialogTrigger asChild>
-        <Button variant="outline" size="sm" className="w-full">
-          <Plus className="mr-2 h-4 w-4" />
-          Add Manual Entry
-        </Button>
-      </DialogTrigger>
+      <DialogTrigger
+        render={
+          <Button variant="outline" size="sm" className="w-full">
+            <Plus className="mr-2 h-4 w-4" />
+            Add Manual Entry
+          </Button>
+        }
+      />
       <DialogContent>
         <form onSubmit={handleSubmit}>
           <DialogHeader>

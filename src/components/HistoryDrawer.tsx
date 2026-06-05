@@ -62,11 +62,13 @@ export function HistoryDrawer() {
 
   return (
     <Sheet open={open} onOpenChange={setOpen}>
-      <SheetTrigger asChild>
-        <Button variant="ghost" size="icon" aria-label="History">
-          <History className="h-5 w-5" />
-        </Button>
-      </SheetTrigger>
+      <SheetTrigger
+        render={
+          <Button variant="ghost" size="icon" aria-label="History">
+            <History className="h-5 w-5" />
+          </Button>
+        }
+      />
       <SheetContent side="right" className="w-full sm:max-w-md overflow-y-auto">
         <SheetHeader>
           <SheetTitle>History</SheetTitle>
@@ -74,7 +76,7 @@ export function HistoryDrawer() {
 
         <div className="mt-4 space-y-4">
           <div className="flex items-center gap-2">
-            <Select value={preset} onValueChange={(v) => setPreset(v as Preset)}>
+            <Select value={preset} onValueChange={(v) => setPreset(v as DatePreset)}>
               <SelectTrigger className="flex-1">
                 <SelectValue />
               </SelectTrigger>
