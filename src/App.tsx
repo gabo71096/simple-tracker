@@ -55,7 +55,9 @@ function App() {
 		<div className="min-h-screen bg-background p-4 md:p-8">
 			<div className="mx-auto max-w-md space-y-6">
 				<header className="flex items-center justify-between">
-					<					h1 className="text-xl font-semibold tracking-tight">Simple Tracker</h1>
+					<h1 className="text-xl font-semibold tracking-tight">
+						Simple Tracker
+					</h1>
 					<div className="flex items-center gap-1">
 						<HistoryDrawer />
 						<SettingsDrawer />

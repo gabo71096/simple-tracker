@@ -2,7 +2,14 @@ import { format } from "date-fns";
 import type { TimeEntry } from "@/db/schema";
 
 export function generateCsv(entries: TimeEntry[]): string {
-	const headers = ["Date", "Time", "Type", "Latitude", "Longitude", "Maps Link"];
+	const headers = [
+		"Date",
+		"Time",
+		"Type",
+		"Latitude",
+		"Longitude",
+		"Maps Link",
+	];
 	const rows = entries.map((entry) => {
 		const mapsLink =
 			entry.latitude != null && entry.longitude != null
