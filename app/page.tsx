@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import { Clock, Download, Globe, Shield, Smartphone } from "lucide-react";
-import Link from "next/link";
+import { Link } from "@/components/Link";
 
 export const metadata: Metadata = {
 	title: "Track your time, offline",
