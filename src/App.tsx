@@ -10,9 +10,10 @@ import { calculateDailySummary, formatDuration } from '@/lib/summary'
 import { Timeline } from '@/components/Timeline'
 import { HistoryDrawer } from '@/components/HistoryDrawer'
 import { SettingsDrawer } from '@/components/SettingsDrawer'
+import { ManualEntryForm } from '@/components/ManualEntryForm'
 
 function App() {
-  const { status, entries, loading, addEntry, updateEntry } = useTimeTracker()
+  const { status, entries, loading, addEntry, updateEntry, refresh } = useTimeTracker()
   const { settings } = useSettings()
   const geo = useGeolocation(settings.geoEnabled)
 
@@ -76,6 +77,7 @@ function App() {
         </Card>
 
         <Timeline entries={entries} onUpdate={updateEntry} />
+        <ManualEntryForm onAdded={refresh} />
       </div>
     </div>
   )
