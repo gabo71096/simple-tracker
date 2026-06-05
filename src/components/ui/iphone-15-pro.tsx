@@ -1,19 +1,23 @@
-import type { SVGProps } from "react"
-import { useEffect, useState } from "react"
+"use client";
+
+import type { SVGProps } from "react";
+import { useEffect, useState } from "react";
 
 export interface Iphone15ProProps extends SVGProps<SVGSVGElement> {
-  width?: number
-  height?: number
-  src?: string
-  videoSrc?: string
+	width?: number;
+	height?: number;
+	src?: string;
+	videoSrc?: string;
+	children?: React.ReactNode;
 }
 
 export default function Iphone15Pro({
-  width = 433,
-  height = 882,
-  src,
-  videoSrc,
-  ...props
+	width = 433,
+	height = 882,
+	src,
+	videoSrc,
+	children,
+	...props
 }: Iphone15ProProps) {
   return (
     <svg
@@ -61,7 +65,7 @@ export default function Iphone15Pro({
       />
 
       {/* Default background when no image/video */}
-      {!(src || videoSrc) && (
+      {!(src || videoSrc || children) && (
         <rect
           className="dark:fill-[#000000]"
           fill="#000000"
@@ -85,7 +89,7 @@ export default function Iphone15Pro({
           y="19.25"
         />
       )}
-      {videoSrc && (
+      {(videoSrc || children) && (
         <foreignObject
           clipPath="url(#roundedCorners)"
           height="843.5"
@@ -93,14 +97,16 @@ export default function Iphone15Pro({
           x="21.25"
           y="19.25"
         >
-          <video
-            autoPlay
-            className="size-full object-cover"
-            loop
-            muted
-            playsInline
-            src={videoSrc}
-          />
+          {children ?? (
+            <video
+              autoPlay
+              className="size-full object-cover"
+              loop
+              muted
+              playsInline
+              src={videoSrc}
+            />
+          )}
         </foreignObject>
       )}
       <path
