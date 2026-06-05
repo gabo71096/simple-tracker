@@ -44,8 +44,10 @@ function App() {
       <div className="mx-auto max-w-md space-y-6">
         <header className="flex items-center justify-between">
           <h1 className="text-xl font-semibold tracking-tight">Time Tracker</h1>
-          <HistoryDrawer />
-          <SettingsDrawer />
+          <div className="flex items-center gap-1">
+            <HistoryDrawer />
+            <SettingsDrawer />
+          </div>
         </header>
 
         <Card>
