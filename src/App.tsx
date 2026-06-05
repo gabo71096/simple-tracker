@@ -7,6 +7,7 @@ import { useTimeTracker } from '@/hooks/useTimeTracker'
 import { useGeolocation } from '@/hooks/useGeolocation'
 import { useSettings } from '@/hooks/useSettings'
 import { calculateDailySummary, formatDuration } from '@/lib/summary'
+import { Timeline } from '@/components/Timeline'
 
 function App() {
   const { status, entries, loading, addEntry } = useTimeTracker()
@@ -69,6 +70,8 @@ function App() {
             </div>
           </CardContent>
         </Card>
+
+        <Timeline entries={entries} />
       </div>
     </div>
   )
