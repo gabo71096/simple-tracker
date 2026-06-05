@@ -1,6 +1,6 @@
 import { useState, useEffect, useCallback } from 'react'
-import { db } from '@/db'
 import type { TimeEntry, TrackerStatus, TimeEntryType } from '@/db/schema'
+import { getEntriesByDate, addEntry as addEntryService, updateEntryTimestamp, deleteEntry as deleteEntryService } from '@/db/service'
 
 export function useTimeTracker() {
   const [status, setStatus] = useState<TrackerStatus>('checked-out')
@@ -10,10 +10,7 @@ export function useTimeTracker() {
   const today = new Date().toISOString().split('T')[0]
 
   const loadTodayEntries = useCallback(async () => {
-    const todayEntries = await db.entries
-      .where('date')
-      .equals(today)
-      .sortBy('timestamp')
+    const todayEntries = await getEntriesByDate(today)
     setEntries(todayEntries)
 
     if (todayEntries.length === 0) {
@@ -31,24 +28,16 @@ export function useTimeTracker() {
 
   const addEntry = useCallback(
     async (type: TimeEntryType, latitude?: number, longitude?: number) => {
-      const now = new Date()
-      const entry: TimeEntry = {
-        type,
-        timestamp: now,
-        date: today,
-        latitude,
-        longitude,
-      }
-      await db.entries.add(entry)
+      const entry = await addEntryService(type, { latitude, longitude })
       await loadTodayEntries()
       return entry
     },
-    [today, loadTodayEntries]
+    [loadTodayEntries]
   )
 
   const updateEntry = useCallback(
     async (id: number, timestamp: Date) => {
-      await db.entries.update(id, { timestamp })
+      await updateEntryTimestamp(id, timestamp)
       await loadTodayEntries()
     },
     [loadTodayEntries]
@@ -56,7 +45,7 @@ export function useTimeTracker() {
 
   const deleteEntry = useCallback(
     async (id: number) => {
-      await db.entries.delete(id)
+      await deleteEntryService(id)
       await loadTodayEntries()
     },
     [loadTodayEntries]
