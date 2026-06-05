@@ -4,6 +4,7 @@ import mockup from "../videos/mobile-mockup.mp4";
 import { AppFooter } from "@/components/AppFooter";
 import { ExternalLink } from "@/components/ExternalLink";
 import { Link } from "@/components/Link";
+import { KoFiWidget } from "./components/KoFiWidget";
 import BackgroundVideo from "next-video/background-video";
 import Iphone15Pro from "@/components/ui/iphone-15-pro";
 
@@ -127,6 +128,7 @@ export default function HomePage() {
 
 			{/* Footer */}
 			<AppFooter />
+			<KoFiWidget />
 		</div>
 	);
 }

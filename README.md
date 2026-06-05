@@ -4,6 +4,8 @@ A free, privacy-first, offline-capable time tracking Progressive Web App (PWA). 
 
 [Open App](https://simple-tracker.app/app) · [View Demo](https://simple-tracker.app) · [Report Bug](../../issues)
 
+[![ko-fi](https://ko-fi.com/img/githubbutton_sm.svg)](https://ko-fi.com/Q4U620VGO8)
+
 ---
 
 ## Features
