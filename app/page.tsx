@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Clock, Download, Globe, MapPin, Shield, Smartphone } from "lucide-react";
+import { SiGithub } from "@icons-pack/react-simple-icons";
 import { Link } from "@/components/Link";
 
 export const metadata: Metadata = {
@@ -41,7 +42,7 @@ export default function HomePage() {
 							Open App
 						</Link>
 						<a
-							href="https://github.com"
+							href="https://github.com/gabo71096/simple-tracker"
 							target="_blank"
 							rel="noopener noreferrer"
 							className="inline-flex items-center justify-center rounded-lg border bg-background px-6 py-3 text-sm font-medium hover:bg-muted transition-colors"
@@ -115,7 +116,7 @@ export default function HomePage() {
 			</section>
 
 			{/* Footer */}
-			<footer className="border-t px-4 py-8 text-center text-sm text-muted-foreground">
+			<footer className="border-t px-4 py-8 text-center text-sm text-muted-foreground space-y-2">
 				<p>
 					Simple Tracker — free, offline, and private. Built by{" "}
 					<a
@@ -128,6 +129,15 @@ export default function HomePage() {
 					</a>
 					.
 				</p>
+				<a
+					href="https://github.com/gabo71096/simple-tracker"
+					target="_blank"
+					rel="noopener noreferrer"
+					className="inline-flex items-center gap-1 hover:text-foreground transition-colors"
+				>
+					<SiGithub className="h-4 w-4" />
+					<span>View on GitHub</span>
+				</a>
 			</footer>
 		</div>
 	);
