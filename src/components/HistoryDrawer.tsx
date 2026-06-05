@@ -1,6 +1,7 @@
 import { format } from "date-fns";
 import { Download, History, MapPin } from "lucide-react";
 import { useEffect, useState } from "react";
+import { ExternalLink } from "@/components/ExternalLink";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import {
@@ -142,15 +143,13 @@ export function HistoryDrawer() {
 											</span>
 										</div>
 										{entry.latitude != null && entry.longitude != null && (
-											<a
+											<ExternalLink
 												href={`https://www.google.com/maps?q=${entry.latitude},${entry.longitude}`}
-												target="_blank"
-												rel="noopener noreferrer"
 												className="flex items-center gap-1 text-xs text-primary hover:underline"
 											>
 												<MapPin className="h-3 w-3" />
 												Map
-											</a>
+											</ExternalLink>
 										)}
 									</div>
 								))}

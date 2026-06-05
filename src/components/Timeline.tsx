@@ -1,6 +1,7 @@
 import { format } from "date-fns";
 import { Coffee, LogIn, LogOut, MapPin, Play } from "lucide-react";
 import { useRef, useState } from "react";
+import { ExternalLink } from "@/components/ExternalLink";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import {
@@ -151,16 +152,14 @@ export function Timeline({ entries, onUpdate }: TimelineProps) {
 									</div>
 								</div>
 								{entry.latitude != null && entry.longitude != null && (
-									<a
+									<ExternalLink
 										href={`https://www.google.com/maps?q=${entry.latitude},${entry.longitude}`}
-										target="_blank"
-										rel="noopener noreferrer"
 										className="flex items-center gap-1 text-xs text-primary hover:underline ml-2"
 										title="View location"
 									>
 										<MapPin className="h-3 w-3" />
 										Map
-									</a>
+									</ExternalLink>
 								)}
 							</div>
 						);

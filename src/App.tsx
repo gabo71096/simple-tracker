@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { ExternalLink } from "@/components/ExternalLink";
 import { HistoryDrawer } from "@/components/HistoryDrawer";
 import { LiveClock } from "@/components/LiveClock";
 import { ManualEntryForm } from "@/components/ManualEntryForm";
@@ -112,14 +113,12 @@ function App() {
 				<ManualEntryForm onAdded={refresh} />
 
 				<footer className="py-6 text-center text-xs text-muted-foreground">
-					<a
+					<ExternalLink
 						href="https://gl-labs.dev"
-						target="_blank"
-						rel="noopener noreferrer"
 						className="hover:text-foreground hover:underline transition-colors"
 					>
 						Powered by GL Labs
-					</a>
+					</ExternalLink>
 				</footer>
 			</div>
 		</div>
