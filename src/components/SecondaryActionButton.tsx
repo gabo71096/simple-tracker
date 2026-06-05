@@ -1,6 +1,6 @@
 import { Button } from '@/components/ui/button'
 import type { TrackerStatus } from '@/db/schema'
-import { Coffee, Play } from 'lucide-react'
+import { Coffee, Play, Loader2 } from 'lucide-react'
 
 interface SecondaryActionButtonProps {
   status: TrackerStatus
@@ -28,7 +28,11 @@ export function SecondaryActionButton({
         onClick={onBreakOut}
         disabled={disabled}
       >
-        <Play className="mr-2 h-5 w-5" />
+        {disabled ? (
+          <Loader2 className="mr-2 h-5 w-5 animate-spin" />
+        ) : (
+          <Play className="mr-2 h-5 w-5" />
+        )}
         Resume Work
       </Button>
     )
@@ -42,7 +46,11 @@ export function SecondaryActionButton({
       onClick={onBreakIn}
       disabled={disabled}
     >
-      <Coffee className="mr-2 h-5 w-5" />
+      {disabled ? (
+        <Loader2 className="mr-2 h-5 w-5 animate-spin" />
+      ) : (
+        <Coffee className="mr-2 h-5 w-5" />
+      )}
       Take Break
     </Button>
   )

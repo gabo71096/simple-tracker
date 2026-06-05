@@ -11,33 +11,44 @@ import { Timeline } from '@/components/Timeline'
 import { HistoryDrawer } from '@/components/HistoryDrawer'
 import { SettingsDrawer } from '@/components/SettingsDrawer'
 import { ManualEntryForm } from '@/components/ManualEntryForm'
+import { useState } from 'react'
 
 function App() {
   const { status, entries, loading, addEntry, updateEntry, refresh } = useTimeTracker()
   const { settings } = useSettings()
   const geo = useGeolocation(settings.geoEnabled)
+  const [processing, setProcessing] = useState(false)
 
   const summary = calculateDailySummary(entries)
 
-  const handleCheckIn = async () => {
+  const withProcessing = (fn: () => Promise<void>) => async () => {
+    setProcessing(true)
+    try {
+      await fn()
+    } finally {
+      setProcessing(false)
+    }
+  }
+
+  const handleCheckIn = withProcessing(async () => {
     const loc = await geo.capture()
     await addEntry('check-in', loc.latitude, loc.longitude)
-  }
+  })
 
-  const handleCheckOut = async () => {
+  const handleCheckOut = withProcessing(async () => {
     const loc = await geo.capture()
     await addEntry('check-out', loc.latitude, loc.longitude)
-  }
+  })
 
-  const handleBreakIn = async () => {
+  const handleBreakIn = withProcessing(async () => {
     const loc = await geo.capture()
     await addEntry('break-in', loc.latitude, loc.longitude)
-  }
+  })
 
-  const handleBreakOut = async () => {
+  const handleBreakOut = withProcessing(async () => {
     const loc = await geo.capture()
     await addEntry('break-out', loc.latitude, loc.longitude)
-  }
+  })
 
   return (
     <div className="min-h-screen bg-background p-4 md:p-8">
@@ -66,13 +77,13 @@ function App() {
                 status={status}
                 onCheckIn={handleCheckIn}
                 onCheckOut={handleCheckOut}
-                disabled={loading}
+                disabled={loading || processing}
               />
               <SecondaryActionButton
                 status={status}
                 onBreakIn={handleBreakIn}
                 onBreakOut={handleBreakOut}
-                disabled={loading}
+                disabled={loading || processing}
               />
             </div>
           </CardContent>
