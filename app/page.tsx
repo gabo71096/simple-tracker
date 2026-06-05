@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { Clock, Download, Globe, MapPin, Shield, Smartphone } from "lucide-react";
 import { SiGithub } from "@icons-pack/react-simple-icons";
-import Video from "next-video";
+import BackgroundVideo from "next-video/background-video";
 import mockup from "../videos/mobile-mockup.mp4";
 import { ExternalLink } from "@/components/ExternalLink";
 import { Link } from "@/components/Link";
@@ -57,14 +57,13 @@ export default function HomePage() {
 
 					<div className="flex justify-center">
 						<Iphone15Pro width={280} height={570}>
-							<Video
-								src={mockup}
-								controls={false}
-								autoPlay
-								loop
-								muted
-								playsInline
-							/>
+						<BackgroundVideo
+							src={mockup}
+							autoPlay
+							loop
+							muted
+							playsInline
+						/>
 						</Iphone15Pro>
 					</div>
 				</div>
