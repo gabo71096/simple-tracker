@@ -3,7 +3,7 @@ import "./globals.css";
 import { ServiceWorkerRegister } from "./components/ServiceWorkerRegister";
 
 export const metadata: Metadata = {
-	metadataBase: new URL("https://simple-tracker.gl-labs.dev"),
+	metadataBase: new URL("https://simple-tracker.app"),
 	title: {
 		template: "%s | Simple Tracker",
 		default: "Simple Tracker",
