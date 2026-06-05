@@ -2,14 +2,21 @@ import { format } from "date-fns";
 import type { TimeEntry } from "@/db/schema";
 
 export function generateCsv(entries: TimeEntry[]): string {
-	const headers = ["Date", "Time", "Type", "Latitude", "Longitude"];
-	const rows = entries.map((entry) => [
-		entry.date,
-		format(new Date(entry.timestamp), "HH:mm:ss"),
-		entry.type,
-		entry.latitude?.toString() ?? "",
-		entry.longitude?.toString() ?? "",
-	]);
+	const headers = ["Date", "Time", "Type", "Latitude", "Longitude", "Maps Link"];
+	const rows = entries.map((entry) => {
+		const mapsLink =
+			entry.latitude != null && entry.longitude != null
+				? `https://www.google.com/maps?q=${entry.latitude},${entry.longitude}`
+				: "";
+		return [
+			entry.date,
+			format(new Date(entry.timestamp), "HH:mm:ss"),
+			entry.type,
+			entry.latitude?.toString() ?? "",
+			entry.longitude?.toString() ?? "",
+			mapsLink,
+		];
+	});
 
 	const escapeCsv = (val: string) => {
 		if (val.includes(",") || val.includes('"') || val.includes("\n")) {
