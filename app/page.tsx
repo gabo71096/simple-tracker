@@ -55,7 +55,7 @@ export default function HomePage() {
 						</div>
 					</div>
 
-					<div className="flex justify-center">
+					<div className="hidden lg:flex justify-center">
 						<Iphone15Pro height={500} width={245}>
 							<BackgroundVideo src={mockup} autoPlay loop muted playsInline />
 						</Iphone15Pro>
