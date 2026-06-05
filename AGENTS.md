@@ -27,6 +27,12 @@
 - Check: `pnpm lint`
 - Fix: `pnpm lint:fix` or `pnpm format`
 
+## Commit Conventions
+
+- Every commit message must use a lowercase prefix followed by a semicolon and a space.
+- Valid prefixes: `feat; `, `fix; `, `chore; `, `refactor; `, `docs; `, `style; `, `test; `, etc.
+- Example: `feat; add user authentication flow`
+
 ## Architecture
 
 - **Next.js App Router**.
