@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Clock, Download, Globe, Shield, Smartphone } from "lucide-react";
+import { Clock, Download, Globe, MapPin, Shield, Smartphone } from "lucide-react";
 import { Link } from "@/components/Link";
 
 export const metadata: Metadata = {
@@ -30,7 +30,8 @@ export default function HomePage() {
 					</h1>
 					<p className="text-lg text-muted-foreground max-w-lg mx-auto">
 						Simple Tracker is a free, offline, privacy-first time tracking app.
-						No account. No cloud. Just your data, on your device.
+						No account. No cloud. Just your data, on your device. Optionally
+						tag your entries with your current location.
 					</p>
 					<div className="flex items-center justify-center gap-4">
 						<Link
@@ -57,7 +58,7 @@ export default function HomePage() {
 					<h2 className="text-center text-3xl font-bold tracking-tight mb-12">
 						Why Simple Tracker?
 					</h2>
-					<div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-4">
+					<div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-5">
 						<FeatureCard
 							icon={<Shield className="h-6 w-6" />}
 							title="Privacy First"
@@ -67,6 +68,11 @@ export default function HomePage() {
 							icon={<Globe className="h-6 w-6" />}
 							title="Works Offline"
 							description="Track your hours anywhere, even without an internet connection."
+						/>
+						<FeatureCard
+							icon={<MapPin className="h-6 w-6" />}
+							title="Location Aware"
+							description="Optionally tag your entries with your current location."
 						/>
 						<FeatureCard
 							icon={<Download className="h-6 w-6" />}
