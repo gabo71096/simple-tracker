@@ -12,7 +12,7 @@ import { HistoryDrawer } from '@/components/HistoryDrawer'
 import { SettingsDrawer } from '@/components/SettingsDrawer'
 
 function App() {
-  const { status, entries, loading, addEntry } = useTimeTracker()
+  const { status, entries, loading, addEntry, updateEntry } = useTimeTracker()
   const { settings } = useSettings()
   const geo = useGeolocation(settings.geoEnabled)
 
@@ -75,7 +75,7 @@ function App() {
           </CardContent>
         </Card>
 
-        <Timeline entries={entries} />
+        <Timeline entries={entries} onUpdate={updateEntry} />
       </div>
     </div>
   )
