@@ -1,5 +1,17 @@
+import type { Metadata } from "next";
 import { Clock, Download, Globe, Shield, Smartphone } from "lucide-react";
 import Link from "next/link";
+
+export const metadata: Metadata = {
+	title: "Track your time, offline",
+	description:
+		"A free, privacy-first time tracking app that works offline. No account required.",
+	openGraph: {
+		title: "Track your time, offline | Simple Tracker",
+		description:
+			"A free, privacy-first time tracking app that works offline. No account required.",
+	},
+};
 
 export default function HomePage() {
 	return (
