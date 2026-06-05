@@ -9,6 +9,7 @@ import { useSettings } from '@/hooks/useSettings'
 import { calculateDailySummary, formatDuration } from '@/lib/summary'
 import { Timeline } from '@/components/Timeline'
 import { HistoryDrawer } from '@/components/HistoryDrawer'
+import { SettingsDrawer } from '@/components/SettingsDrawer'
 
 function App() {
   const { status, entries, loading, addEntry } = useTimeTracker()
@@ -43,6 +44,7 @@ function App() {
         <header className="flex items-center justify-between">
           <h1 className="text-xl font-semibold tracking-tight">Time Tracker</h1>
           <HistoryDrawer />
+          <SettingsDrawer />
         </header>
 
         <Card>
