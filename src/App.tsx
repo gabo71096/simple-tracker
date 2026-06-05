@@ -108,6 +108,17 @@ function App() {
 
 				<Timeline entries={entries} onUpdate={updateEntry} />
 				<ManualEntryForm onAdded={refresh} />
+
+				<footer className="py-6 text-center text-xs text-muted-foreground">
+					<a
+						href="https://gl-labs.dev"
+						target="_blank"
+						rel="noopener noreferrer"
+						className="hover:text-foreground hover:underline transition-colors"
+					>
+						Powered by GL Labs
+					</a>
+				</footer>
 			</div>
 		</div>
 	);
