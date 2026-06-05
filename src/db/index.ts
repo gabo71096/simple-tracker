@@ -1,15 +1,15 @@
-import Dexie, { type Table } from 'dexie'
-import type { TimeEntry } from './schema'
+import Dexie, { type Table } from "dexie";
+import type { TimeEntry } from "./schema";
 
 export class TimeTrackerDatabase extends Dexie {
-  entries!: Table<TimeEntry, number>
+	entries!: Table<TimeEntry, number>;
 
-  constructor() {
-    super('TimeTrackerDB')
-    this.version(1).stores({
-      entries: '++id, date, type',
-    })
-  }
+	constructor() {
+		super("TimeTrackerDB");
+		this.version(1).stores({
+			entries: "++id, date, type",
+		});
+	}
 }
 
-export const db = new TimeTrackerDatabase()
+export const db = new TimeTrackerDatabase();
