@@ -1,8 +1,11 @@
 import type { Metadata } from "next";
 import { Clock, Download, Globe, MapPin, Shield, Smartphone } from "lucide-react";
 import { SiGithub } from "@icons-pack/react-simple-icons";
+import Video from "next-video";
+import mockup from "/videos/mobile-mockup.mp4";
 import { ExternalLink } from "@/components/ExternalLink";
 import { Link } from "@/components/Link";
+import Iphone15Pro from "@/components/ui/iphone-15-pro";
 
 export const metadata: Metadata = {
 	title: "Track your time, offline",
@@ -19,35 +22,50 @@ export default function HomePage() {
 	return (
 		<div className="min-h-screen flex flex-col">
 			{/* Hero */}
-			<section className="flex-1 flex flex-col items-center justify-center px-4 py-20 text-center">
-				<div className="mx-auto max-w-2xl space-y-6">
-					<div className="inline-flex items-center gap-2 rounded-full border bg-secondary px-4 py-1.5 text-sm font-medium text-secondary-foreground">
-						<Clock className="h-4 w-4" />
-						<span>Free &amp; open source</span>
+			<section className="flex-1 flex flex-col items-center justify-center px-4 py-20">
+				<div className="mx-auto max-w-6xl grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+					<div className="space-y-6 text-center lg:text-left">
+						<div className="inline-flex items-center gap-2 rounded-full border bg-secondary px-4 py-1.5 text-sm font-medium text-secondary-foreground">
+							<Clock className="h-4 w-4" />
+							<span>Free &amp; open source</span>
+						</div>
+						<h1 className="text-4xl font-extrabold tracking-tight sm:text-6xl">
+							Track your time,
+							<br />
+							<span className="text-primary">privately.</span>
+						</h1>
+						<p className="text-lg text-muted-foreground max-w-lg mx-auto lg:mx-0">
+							Simple Tracker is a free, offline, privacy-first time tracking app.
+							No account. No cloud. Just your data, on your device. Optionally
+							tag your entries with your current location.
+						</p>
+						<div className="flex items-center justify-center lg:justify-start gap-4">
+							<Link
+								href="/app"
+								className="inline-flex items-center justify-center rounded-lg bg-primary px-6 py-3 text-sm font-medium text-primary-foreground shadow hover:bg-primary/80 transition-colors"
+							>
+								Open App
+							</Link>
+							<ExternalLink
+								href="https://github.com/gabo71096/simple-tracker"
+								className="inline-flex items-center justify-center rounded-lg border bg-background px-6 py-3 text-sm font-medium hover:bg-muted transition-colors"
+							>
+								View on GitHub
+							</ExternalLink>
+						</div>
 					</div>
-					<h1 className="text-4xl font-extrabold tracking-tight sm:text-6xl">
-						Track your time,
-						<br />
-						<span className="text-primary">privately.</span>
-					</h1>
-					<p className="text-lg text-muted-foreground max-w-lg mx-auto">
-						Simple Tracker is a free, offline, privacy-first time tracking app.
-						No account. No cloud. Just your data, on your device. Optionally
-						tag your entries with your current location.
-					</p>
-					<div className="flex items-center justify-center gap-4">
-					<Link
-						href="/app"
-						className="inline-flex items-center justify-center rounded-lg bg-primary px-6 py-3 text-sm font-medium text-primary-foreground shadow hover:bg-primary/80 transition-colors"
-					>
-						Open App
-					</Link>
-					<ExternalLink
-						href="https://github.com/gabo71096/simple-tracker"
-						className="inline-flex items-center justify-center rounded-lg border bg-background px-6 py-3 text-sm font-medium hover:bg-muted transition-colors"
-					>
-						View on GitHub
-					</ExternalLink>
+
+					<div className="flex justify-center">
+						<Iphone15Pro width={280} height={570}>
+							<Video
+								src={mockup}
+								controls={false}
+								autoPlay
+								loop
+								muted
+								playsInline
+							/>
+						</Iphone15Pro>
 					</div>
 				</div>
 			</section>
@@ -117,22 +135,22 @@ export default function HomePage() {
 			{/* Footer */}
 			<footer className="border-t px-4 py-8 text-center text-sm text-muted-foreground space-y-2">
 				<p>
-				Simple Tracker — free, offline, and private. Built by{" "}
-				<ExternalLink
-					href="https://gl-labs.dev"
-					className="hover:text-foreground hover:underline transition-colors"
-				>
-					GL Labs
-				</ExternalLink>
+					Simple Tracker — free, offline, and private. Built by{" "}
+					<ExternalLink
+						href="https://gl-labs.dev"
+						className="hover:text-foreground hover:underline transition-colors"
+					>
+						GL Labs
+					</ExternalLink>
 					.
 				</p>
-			<ExternalLink
-				href="https://github.com/gabo71096/simple-tracker"
-				className="inline-flex items-center gap-1 hover:text-foreground transition-colors"
-			>
-				<SiGithub className="h-4 w-4" />
-				<span>View on GitHub</span>
-			</ExternalLink>
+				<ExternalLink
+					href="https://github.com/gabo71096/simple-tracker"
+					className="inline-flex items-center gap-1 hover:text-foreground transition-colors"
+				>
+					<SiGithub className="h-4 w-4" />
+					<span>View on GitHub</span>
+				</ExternalLink>
 			</footer>
 		</div>
 	);
