@@ -1,6 +1,40 @@
 import { Card, CardContent } from '@/components/ui/card'
+import { LiveClock } from '@/components/LiveClock'
+import { StatusIndicator } from '@/components/StatusIndicator'
+import { PrimaryActionButton } from '@/components/PrimaryActionButton'
+import { SecondaryActionButton } from '@/components/SecondaryActionButton'
+import { useTimeTracker } from '@/hooks/useTimeTracker'
+import { useGeolocation } from '@/hooks/useGeolocation'
+import { useSettings } from '@/hooks/useSettings'
+import { calculateDailySummary, formatDuration } from '@/lib/summary'
 
 function App() {
+  const { status, entries, loading, addEntry } = useTimeTracker()
+  const { settings } = useSettings()
+  const geo = useGeolocation(settings.geoEnabled)
+
+  const summary = calculateDailySummary(entries)
+
+  const handleCheckIn = async () => {
+    const loc = await geo.capture()
+    await addEntry('check-in', loc.latitude, loc.longitude)
+  }
+
+  const handleCheckOut = async () => {
+    const loc = await geo.capture()
+    await addEntry('check-out', loc.latitude, loc.longitude)
+  }
+
+  const handleBreakIn = async () => {
+    const loc = await geo.capture()
+    await addEntry('break-in', loc.latitude, loc.longitude)
+  }
+
+  const handleBreakOut = async () => {
+    const loc = await geo.capture()
+    await addEntry('break-out', loc.latitude, loc.longitude)
+  }
+
   return (
     <div className="min-h-screen bg-background p-4 md:p-8">
       <div className="mx-auto max-w-md space-y-6">
@@ -10,28 +44,41 @@ function App() {
 
         <Card>
           <CardContent className="p-6 space-y-6">
-            <div className="text-center space-y-2">
-              <div className="text-5xl font-mono font-bold tracking-tight">
-                00:00:00
-              </div>
-              <p className="text-muted-foreground text-sm">Current Time</p>
-            </div>
+            <LiveClock />
+            <StatusIndicator status={status} />
 
-            <div className="flex items-center justify-center gap-2">
-              <span className="inline-flex items-center gap-2 rounded-full bg-secondary px-4 py-1.5 text-sm font-medium">
-                <span className="h-2 w-2 rounded-full bg-muted-foreground" />
-                Checked Out
-              </span>
+            <div className="grid grid-cols-3 gap-3">
+              <StatCard label="Started" value={summary.startTime ? summary.startTime.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }) : '--:--'} />
+              <StatCard label="Break" value={formatDuration(summary.totalBreakSeconds)} />
+              <StatCard label="Worked" value={formatDuration(summary.totalWorkSeconds)} />
             </div>
 
             <div className="space-y-3">
-              <button className="w-full h-14 text-lg font-semibold rounded-lg bg-primary text-primary-foreground hover:bg-primary/90 transition-colors">
-                Check In
-              </button>
+              <PrimaryActionButton
+                status={status}
+                onCheckIn={handleCheckIn}
+                onCheckOut={handleCheckOut}
+                disabled={loading}
+              />
+              <SecondaryActionButton
+                status={status}
+                onBreakIn={handleBreakIn}
+                onBreakOut={handleBreakOut}
+                disabled={loading}
+              />
             </div>
           </CardContent>
         </Card>
       </div>
+    </div>
+  )
+}
+
+function StatCard({ label, value }: { label: string; value: string }) {
+  return (
+    <div className="rounded-lg bg-secondary p-3 text-center">
+      <div className="text-lg font-semibold tabular-nums">{value}</div>
+      <div className="text-xs text-muted-foreground">{label}</div>
     </div>
   )
 }
