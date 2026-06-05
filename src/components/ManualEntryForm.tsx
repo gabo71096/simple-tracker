@@ -1,7 +1,6 @@
+import { Plus } from 'lucide-react'
 import { useState } from 'react'
 import { Button } from '@/components/ui/button'
-import { Input } from '@/components/ui/input'
-import { Label } from '@/components/ui/label'
 import {
   Dialog,
   DialogContent,
@@ -11,6 +10,8 @@ import {
   DialogTitle,
   DialogTrigger,
 } from '@/components/ui/dialog'
+import { Input } from '@/components/ui/input'
+import { Label } from '@/components/ui/label'
 import {
   Select,
   SelectContent,
@@ -18,7 +19,6 @@ import {
   SelectTrigger,
   SelectValue,
 } from '@/components/ui/select'
-import { Plus } from 'lucide-react'
 import type { TimeEntryType } from '@/db/schema'
 import { addEntry as addEntryService } from '@/db/service'
 
@@ -37,7 +37,7 @@ export function ManualEntryForm({ onAdded }: ManualEntryFormProps) {
     if (!dateValue || !timeValue) return
 
     const timestamp = new Date(`${dateValue}T${timeValue}`)
-    if (isNaN(timestamp.getTime())) return
+    if (Number.isNaN(timestamp.getTime())) return
 
     await addEntryService(type, { latitude: undefined, longitude: undefined })
     // Manually override timestamp by updating after creation... actually let's modify service
@@ -68,9 +68,7 @@ export function ManualEntryForm({ onAdded }: ManualEntryFormProps) {
         <form onSubmit={handleSubmit}>
           <DialogHeader>
             <DialogTitle>Add Manual Entry</DialogTitle>
-            <DialogDescription>
-              Manually add a time entry for any date.
-            </DialogDescription>
+            <DialogDescription>Manually add a time entry for any date.</DialogDescription>
           </DialogHeader>
 
           <div className="space-y-4 py-4">

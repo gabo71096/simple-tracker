@@ -1,6 +1,6 @@
+import { Loader2, LogIn, LogOut } from 'lucide-react'
 import { Button } from '@/components/ui/button'
 import type { TrackerStatus } from '@/db/schema'
-import { LogIn, LogOut, Loader2 } from 'lucide-react'
 
 interface PrimaryActionButtonProps {
   status: TrackerStatus

@@ -1,6 +1,8 @@
-import { useState, useRef } from 'react'
+import { format } from 'date-fns'
+import { Coffee, LogIn, LogOut, MapPin, Play } from 'lucide-react'
+import { useRef, useState } from 'react'
+import { Button } from '@/components/ui/button'
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
-import { Input } from '@/components/ui/input'
 import {
   Dialog,
   DialogContent,
@@ -9,20 +11,15 @@ import {
   DialogHeader,
   DialogTitle,
 } from '@/components/ui/dialog'
-import { Button } from '@/components/ui/button'
+import { Input } from '@/components/ui/input'
 import type { TimeEntry } from '@/db/schema'
-import { format } from 'date-fns'
-import { LogIn, LogOut, Coffee, Play, MapPin } from 'lucide-react'
 
 interface TimelineProps {
   entries: TimeEntry[]
   onUpdate: (id: number, timestamp: Date) => void
 }
 
-const typeConfig: Record<
-  string,
-  { label: string; icon: React.ReactNode; colorClass: string }
-> = {
+const typeConfig: Record<string, { label: string; icon: React.ReactNode; colorClass: string }> = {
   'check-in': {
     label: 'Check In',
     icon: <LogIn className="h-4 w-4" />,
@@ -69,7 +66,7 @@ export function Timeline({ entries, onUpdate }: TimelineProps) {
   const submitEdit = () => {
     if (editingId == null) return
     const parsed = new Date(editValue)
-    if (isNaN(parsed.getTime())) {
+    if (Number.isNaN(parsed.getTime())) {
       setEditingId(null)
       return
     }
@@ -137,6 +134,7 @@ export function Timeline({ entries, onUpdate }: TimelineProps) {
                       />
                     ) : (
                       <button
+                        type="button"
                         onClick={() => startEdit(entry)}
                         className="text-xs text-muted-foreground hover:text-foreground hover:underline cursor-pointer tabular-nums"
                         title="Click to edit"

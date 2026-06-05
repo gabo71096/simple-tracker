@@ -1,5 +1,5 @@
-import type { TimeEntry } from '@/db/schema'
 import { format } from 'date-fns'
+import type { TimeEntry } from '@/db/schema'
 
 export function generateCsv(entries: TimeEntry[]): string {
   const headers = ['Date', 'Time', 'Type', 'Latitude', 'Longitude']
@@ -11,14 +11,14 @@ export function generateCsv(entries: TimeEntry[]): string {
     entry.longitude?.toString() ?? '',
   ])
 
-  const escape = (val: string) => {
+  const escapeCsv = (val: string) => {
     if (val.includes(',') || val.includes('"') || val.includes('\n')) {
       return `"${val.replace(/"/g, '""')}"`
     }
     return val
   }
 
-  return [headers, ...rows].map((row) => row.map(escape).join(',')).join('\n')
+  return [headers, ...rows].map((row) => row.map(escapeCsv).join(',')).join('\n')
 }
 
 export function downloadFile(content: string, filename: string, mimeType: string) {

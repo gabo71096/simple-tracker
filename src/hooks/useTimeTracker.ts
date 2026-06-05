@@ -1,6 +1,11 @@
-import { useState, useEffect, useCallback } from 'react'
-import type { TimeEntry, TrackerStatus, TimeEntryType } from '@/db/schema'
-import { getEntriesByDate, addEntry as addEntryService, updateEntryTimestamp, deleteEntry as deleteEntryService } from '@/db/service'
+import { useCallback, useEffect, useState } from 'react'
+import type { TimeEntry, TimeEntryType, TrackerStatus } from '@/db/schema'
+import {
+  addEntry as addEntryService,
+  deleteEntry as deleteEntryService,
+  getEntriesByDate,
+  updateEntryTimestamp,
+} from '@/db/service'
 
 export function useTimeTracker() {
   const [status, setStatus] = useState<TrackerStatus>('checked-out')
@@ -38,7 +43,9 @@ export function useTimeTracker() {
       setLoading(false)
     }
     load()
-    return () => { cancelled = true }
+    return () => {
+      cancelled = true
+    }
   }, [today])
 
   const addEntry = useCallback(
@@ -47,7 +54,7 @@ export function useTimeTracker() {
       await refresh()
       return entry
     },
-    [refresh]
+    [refresh],
   )
 
   const updateEntry = useCallback(
@@ -55,7 +62,7 @@ export function useTimeTracker() {
       await updateEntryTimestamp(id, timestamp)
       await refresh()
     },
-    [refresh]
+    [refresh],
   )
 
   const deleteEntry = useCallback(
@@ -63,7 +70,7 @@ export function useTimeTracker() {
       await deleteEntryService(id)
       await refresh()
     },
-    [refresh]
+    [refresh],
   )
 
   return {

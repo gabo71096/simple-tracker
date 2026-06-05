@@ -1,4 +1,4 @@
-import { format, startOfWeek, startOfMonth } from 'date-fns'
+import { format, startOfMonth, startOfWeek } from 'date-fns'
 
 export type DatePreset = 'today' | 'week' | 'month' | 'all'
 

@@ -1,18 +1,12 @@
+import { Download, Settings, Upload } from 'lucide-react'
 import { useRef } from 'react'
-import {
-  Sheet,
-  SheetContent,
-  SheetHeader,
-  SheetTitle,
-  SheetTrigger,
-} from '@/components/ui/sheet'
 import { Button } from '@/components/ui/button'
 import { Label } from '@/components/ui/label'
-import { Switch } from '@/components/ui/switch'
 import { Separator } from '@/components/ui/separator'
+import { Sheet, SheetContent, SheetHeader, SheetTitle, SheetTrigger } from '@/components/ui/sheet'
+import { Switch } from '@/components/ui/switch'
+import { clearAllEntries, exportAllEntries, importEntries } from '@/db/service'
 import { useSettings } from '@/hooks/useSettings'
-import { exportAllEntries, clearAllEntries, importEntries } from '@/db/service'
-import { Settings, Download, Upload } from 'lucide-react'
 
 export function SettingsDrawer() {
   const { settings, update } = useSettings()
@@ -47,11 +41,7 @@ export function SettingsDrawer() {
         alert('Invalid backup file format.')
         return
       }
-      if (
-        !confirm(
-          'This will replace all current data with the backup. Are you sure?'
-        )
-      ) {
+      if (!confirm('This will replace all current data with the backup. Are you sure?')) {
         return
       }
       await clearAllEntries()
@@ -101,9 +91,7 @@ export function SettingsDrawer() {
               <Label htmlFor="dark-toggle" className="text-base">
                 Dark Mode
               </Label>
-              <p className="text-sm text-muted-foreground">
-                Use dark color scheme.
-              </p>
+              <p className="text-sm text-muted-foreground">Use dark color scheme.</p>
             </div>
             <Switch
               id="dark-toggle"

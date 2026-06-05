@@ -1,14 +1,8 @@
-import { useState, useEffect } from 'react'
-import {
-  Sheet,
-  SheetContent,
-  SheetHeader,
-  SheetTitle,
-  SheetTrigger,
-} from '@/components/ui/sheet'
-import { Button } from '@/components/ui/button'
+import { format } from 'date-fns'
+import { Download, History, MapPin } from 'lucide-react'
+import { useEffect, useState } from 'react'
 import { Badge } from '@/components/ui/badge'
-import { Separator } from '@/components/ui/separator'
+import { Button } from '@/components/ui/button'
 import {
   Select,
   SelectContent,
@@ -16,12 +10,12 @@ import {
   SelectTrigger,
   SelectValue,
 } from '@/components/ui/select'
-import { History, MapPin, Download } from 'lucide-react'
-import { getEntriesBetween, getAllDates } from '@/db/service'
+import { Separator } from '@/components/ui/separator'
+import { Sheet, SheetContent, SheetHeader, SheetTitle, SheetTrigger } from '@/components/ui/sheet'
 import type { TimeEntry } from '@/db/schema'
-import { format } from 'date-fns'
-import { generateCsv, downloadFile } from '@/lib/csv'
-import { presetOptions, getDateRange, type DatePreset } from '@/lib/date-range'
+import { getAllDates, getEntriesBetween } from '@/db/service'
+import { downloadFile, generateCsv } from '@/lib/csv'
+import { type DatePreset, getDateRange, presetOptions } from '@/lib/date-range'
 
 const typeLabel: Record<string, string> = {
   'check-in': 'Check In',
@@ -50,7 +44,7 @@ export function HistoryDrawer() {
   useEffect(() => {
     const { start, end } = getDateRange(preset)
     getEntriesBetween(start, end).then(setEntries)
-  }, [preset, open])
+  }, [preset])
 
   const handleDownload = () => {
     const { start, end } = getDateRange(preset)
@@ -89,7 +83,12 @@ export function HistoryDrawer() {
               </SelectContent>
             </Select>
             {entries.length > 0 && (
-              <Button variant="outline" size="icon" onClick={handleDownload} aria-label="Download CSV">
+              <Button
+                variant="outline"
+                size="icon"
+                onClick={handleDownload}
+                aria-label="Download CSV"
+              >
                 <Download className="h-4 w-4" />
               </Button>
             )}
@@ -110,7 +109,7 @@ export function HistoryDrawer() {
           {Object.entries(grouped).map(([date, dayEntries]) => (
             <div key={date}>
               <h3 className="text-sm font-semibold text-muted-foreground mb-2">
-                {format(new Date(date + 'T00:00:00'), 'EEEE, MMMM d, yyyy')}
+                {format(new Date(`${date}T00:00:00`), 'EEEE, MMMM d, yyyy')}
               </h3>
               <div className="space-y-2">
                 {dayEntries.map((entry) => (
@@ -150,10 +149,13 @@ export function HistoryDrawer() {
 }
 
 function groupByDate(entries: TimeEntry[]): Record<string, TimeEntry[]> {
-  return entries.reduce((acc, entry) => {
-    const date = entry.date
-    if (!acc[date]) acc[date] = []
-    acc[date].push(entry)
-    return acc
-  }, {} as Record<string, TimeEntry[]>)
+  return entries.reduce(
+    (acc, entry) => {
+      const date = entry.date
+      if (!acc[date]) acc[date] = []
+      acc[date].push(entry)
+      return acc
+    },
+    {} as Record<string, TimeEntry[]>,
+  )
 }

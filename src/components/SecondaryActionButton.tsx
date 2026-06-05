@@ -1,6 +1,6 @@
+import { Coffee, Loader2, Play } from 'lucide-react'
 import { Button } from '@/components/ui/button'
 import type { TrackerStatus } from '@/db/schema'
-import { Coffee, Play, Loader2 } from 'lucide-react'
 
 interface SecondaryActionButtonProps {
   status: TrackerStatus

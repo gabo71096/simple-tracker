@@ -1,4 +1,4 @@
-import { useState, useCallback } from 'react'
+import { useCallback, useState } from 'react'
 
 interface GeolocationState {
   latitude: number | undefined
@@ -52,7 +52,7 @@ export function useGeolocation(enabled: boolean) {
           setState((prev) => ({ ...prev, error: message, loading: false }))
           resolve({})
         },
-        { enableHighAccuracy: false, timeout: 10000, maximumAge: 60000 }
+        { enableHighAccuracy: false, timeout: 10000, maximumAge: 60000 },
       )
     })
   }, [enabled])

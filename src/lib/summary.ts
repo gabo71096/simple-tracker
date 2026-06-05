@@ -1,8 +1,8 @@
-import type { TimeEntry, DailySummary } from '@/db/schema'
+import type { DailySummary, TimeEntry } from '@/db/schema'
 
 export function calculateDailySummary(entries: TimeEntry[]): DailySummary {
   const date = entries.length > 0 ? entries[0].date : new Date().toISOString().split('T')[0]
-  
+
   let totalWorkSeconds = 0
   let totalBreakSeconds = 0
   let lastCheckIn: Date | null = null
@@ -51,8 +51,7 @@ export function calculateDailySummary(entries: TimeEntry[]): DailySummary {
   }
 
   const startTime = entries.find((e) => e.type === 'check-in')?.timestamp ?? null
-  const endTime =
-    entries.findLast((e) => e.type === 'check-out')?.timestamp ?? null
+  const endTime = entries.findLast((e) => e.type === 'check-out')?.timestamp ?? null
 
   return {
     date,

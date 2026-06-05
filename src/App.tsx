@@ -1,17 +1,17 @@
-import { Card, CardContent } from '@/components/ui/card'
+import { useState } from 'react'
+import { HistoryDrawer } from '@/components/HistoryDrawer'
 import { LiveClock } from '@/components/LiveClock'
-import { StatusIndicator } from '@/components/StatusIndicator'
+import { ManualEntryForm } from '@/components/ManualEntryForm'
 import { PrimaryActionButton } from '@/components/PrimaryActionButton'
 import { SecondaryActionButton } from '@/components/SecondaryActionButton'
-import { useTimeTracker } from '@/hooks/useTimeTracker'
+import { SettingsDrawer } from '@/components/SettingsDrawer'
+import { StatusIndicator } from '@/components/StatusIndicator'
+import { Timeline } from '@/components/Timeline'
+import { Card, CardContent } from '@/components/ui/card'
 import { useGeolocation } from '@/hooks/useGeolocation'
 import { useSettings } from '@/hooks/useSettings'
+import { useTimeTracker } from '@/hooks/useTimeTracker'
 import { calculateDailySummary, formatDuration } from '@/lib/summary'
-import { Timeline } from '@/components/Timeline'
-import { HistoryDrawer } from '@/components/HistoryDrawer'
-import { SettingsDrawer } from '@/components/SettingsDrawer'
-import { ManualEntryForm } from '@/components/ManualEntryForm'
-import { useState } from 'react'
 
 function App() {
   const { status, entries, loading, addEntry, updateEntry, refresh } = useTimeTracker()
@@ -67,7 +67,17 @@ function App() {
             <StatusIndicator status={status} />
 
             <div className="grid grid-cols-3 gap-3">
-              <StatCard label="Started" value={summary.startTime ? summary.startTime.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }) : '--:--'} />
+              <StatCard
+                label="Started"
+                value={
+                  summary.startTime
+                    ? summary.startTime.toLocaleTimeString([], {
+                        hour: '2-digit',
+                        minute: '2-digit',
+                      })
+                    : '--:--'
+                }
+              />
               <StatCard label="Break" value={formatDuration(summary.totalBreakSeconds)} />
               <StatCard label="Worked" value={formatDuration(summary.totalWorkSeconds)} />
             </div>

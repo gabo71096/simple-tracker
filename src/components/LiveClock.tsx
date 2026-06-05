@@ -1,5 +1,5 @@
-import { useState, useEffect } from 'react'
 import { format } from 'date-fns'
+import { useEffect, useState } from 'react'
 
 export function LiveClock() {
   const [time, setTime] = useState(new Date())
@@ -16,9 +16,7 @@ export function LiveClock() {
       <div className="text-5xl font-mono font-bold tracking-tight tabular-nums">
         {format(time, 'HH:mm:ss')}
       </div>
-      <p className="text-muted-foreground text-sm">
-        {format(time, 'EEEE, MMMM d, yyyy')}
-      </p>
+      <p className="text-muted-foreground text-sm">{format(time, 'EEEE, MMMM d, yyyy')}</p>
     </div>
   )
 }

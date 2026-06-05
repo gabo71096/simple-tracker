@@ -26,7 +26,7 @@ export async function getEntriesByDate(date: string): Promise<TimeEntry[]> {
 
 export async function addEntry(
   type: TimeEntryType,
-  options?: { latitude?: number; longitude?: number }
+  options?: { latitude?: number; longitude?: number },
 ): Promise<TimeEntry> {
   const now = new Date()
   const entry: TimeEntry = {
