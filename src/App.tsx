@@ -8,6 +8,7 @@ import { useGeolocation } from '@/hooks/useGeolocation'
 import { useSettings } from '@/hooks/useSettings'
 import { calculateDailySummary, formatDuration } from '@/lib/summary'
 import { Timeline } from '@/components/Timeline'
+import { HistoryDrawer } from '@/components/HistoryDrawer'
 
 function App() {
   const { status, entries, loading, addEntry } = useTimeTracker()
@@ -41,6 +42,7 @@ function App() {
       <div className="mx-auto max-w-md space-y-6">
         <header className="flex items-center justify-between">
           <h1 className="text-xl font-semibold tracking-tight">Time Tracker</h1>
+          <HistoryDrawer />
         </header>
 
         <Card>
