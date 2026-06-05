@@ -1,6 +1,8 @@
 # AGENTS.md
 
 > **Keep this file updated.** Whenever tooling, architecture, dependencies, or workflows change, update this file so agents always have the latest context.
+>
+> **Keep `README.md` updated too.** Any change to features, tech stack, project structure, or scripts must be reflected in the README.
 
 ## Quick Start
 
