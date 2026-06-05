@@ -21,42 +21,7 @@ import { getEntriesBetween, getAllDates } from '@/db/service'
 import type { TimeEntry } from '@/db/schema'
 import { format } from 'date-fns'
 import { generateCsv, downloadFile } from '@/lib/csv'
-
-type Preset = 'today' | 'week' | 'month' | 'all'
-
-const presetOptions: { value: Preset; label: string }[] = [
-  { value: 'today', label: 'Today' },
-  { value: 'week', label: 'This Week' },
-  { value: 'month', label: 'This Month' },
-  { value: 'all', label: 'All Time' },
-]
-
-function getDateRange(preset: Preset): { start: string; end: string } {
-  const now = new Date()
-  const end = now.toISOString().split('T')[0]
-  let start = end
-
-  switch (preset) {
-    case 'today':
-      start = end
-      break
-    case 'week': {
-      const d = new Date(now)
-      d.setDate(d.getDate() - d.getDay())
-      start = d.toISOString().split('T')[0]
-      break
-    }
-    case 'month': {
-      start = `${now.getFullYear()}-${String(now.getMonth() + 1).padStart(2, '0')}-01`
-      break
-    }
-    case 'all':
-      start = '1970-01-01'
-      break
-  }
-
-  return { start, end }
-}
+import { presetOptions, getDateRange, type DatePreset } from '@/lib/date-range'
 
 const typeLabel: Record<string, string> = {
   'check-in': 'Check In',
@@ -74,7 +39,7 @@ const typeColor: Record<string, string> = {
 
 export function HistoryDrawer() {
   const [open, setOpen] = useState(false)
-  const [preset, setPreset] = useState<Preset>('today')
+  const [preset, setPreset] = useState<DatePreset>('today')
   const [entries, setEntries] = useState<TimeEntry[]>([])
   const [hasHistory, setHasHistory] = useState(false)
 
