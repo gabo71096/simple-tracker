@@ -1,7 +1,6 @@
 "use client";
 
 import type { SVGProps } from "react";
-import { useEffect, useState } from "react";
 
 export interface Iphone15ProProps extends SVGProps<SVGSVGElement> {
 	width?: number;
@@ -134,54 +133,5 @@ export default function Iphone15Pro({
 				</clipPath>
 			</defs>
 		</svg>
-	);
-}
-
-// Demo
-function useResponsiveSize(aspectRatio: number) {
-	const [size, setSize] = useState<{ width: number; height: number } | null>(
-		null,
-	);
-
-	useEffect(() => {
-		const updateSize = () => {
-			const padding = 32;
-			const vh = window.innerHeight - padding;
-			const vw = window.innerWidth - padding;
-
-			let height = vh * 0.95;
-			let width = height * aspectRatio;
-
-			if (width > vw * 0.95) {
-				width = vw * 0.95;
-				height = width / aspectRatio;
-			}
-
-			setSize({ width: Math.round(width), height: Math.round(height) });
-		};
-
-		updateSize();
-		window.addEventListener("resize", updateSize);
-		return () => window.removeEventListener("resize", updateSize);
-	}, [aspectRatio]);
-
-	return size;
-}
-
-export function Demo() {
-	const size = useResponsiveSize(433 / 882);
-
-	if (!size) {
-		return <div className="fixed inset-0 bg-muted/50 animate-pulse" />;
-	}
-
-	return (
-		<div className="fixed inset-0 flex items-center justify-center p-4">
-			<Iphone15Pro
-				width={size.width}
-				height={size.height}
-				src="https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?w=800&h=1600&fit=crop"
-			/>
-		</div>
 	);
 }

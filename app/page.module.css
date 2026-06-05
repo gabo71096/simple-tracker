@@ -1,0 +1,19 @@
+.phoneMockup {
+	filter: drop-shadow(0 25px 25px rgb(0 0 0 / 0.15));
+}
+
+.phoneMockup :global(.next-video-container) {
+	aspect-ratio: auto !important;
+	width: 100% !important;
+	height: 100% !important;
+}
+
+.phoneMockup :global(.next-video-bg) {
+	width: 100% !important;
+	height: 100% !important;
+}
+
+.phoneMockup :global(.next-video-bg-video) {
+	width: 100% !important;
+	height: 100% !important;
+}

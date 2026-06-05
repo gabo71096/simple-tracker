@@ -1,10 +1,10 @@
 import type { Metadata } from "next";
 import { Clock, Download, Globe, MapPin, Shield, Smartphone } from "lucide-react";
 import { SiGithub } from "@icons-pack/react-simple-icons";
-import BackgroundVideo from "next-video/background-video";
 import mockup from "../videos/mobile-mockup.mp4";
 import { ExternalLink } from "@/components/ExternalLink";
 import { Link } from "@/components/Link";
+import BackgroundVideo from "next-video/background-video";
 import Iphone15Pro from "@/components/ui/iphone-15-pro";
 
 export const metadata: Metadata = {
@@ -56,14 +56,8 @@ export default function HomePage() {
 					</div>
 
 					<div className="flex justify-center">
-						<Iphone15Pro width={280} height={570}>
-						<BackgroundVideo
-							src={mockup}
-							autoPlay
-							loop
-							muted
-							playsInline
-						/>
+						<Iphone15Pro height={500} width={245}>
+							<BackgroundVideo src={mockup} autoPlay loop muted playsInline />
 						</Iphone15Pro>
 					</div>
 				</div>
