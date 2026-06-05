@@ -1,5 +1,7 @@
 # AGENTS.md
 
+> **Keep this file updated.** Whenever tooling, architecture, dependencies, or workflows change, update this file so agents always have the latest context.
+
 ## Quick Start
 
 - Package manager: **pnpm** (managed via mise: `node = lts`, `pnpm = 11`)
