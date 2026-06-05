@@ -1,3 +1,4 @@
+import { useRef } from 'react'
 import {
   Sheet,
   SheetContent,
@@ -8,11 +9,61 @@ import {
 import { Button } from '@/components/ui/button'
 import { Label } from '@/components/ui/label'
 import { Switch } from '@/components/ui/switch'
+import { Separator } from '@/components/ui/separator'
 import { useSettings } from '@/hooks/useSettings'
-import { Settings } from 'lucide-react'
+import { exportAllEntries, clearAllEntries, importEntries } from '@/db/service'
+import { Settings, Download, Upload } from 'lucide-react'
 
 export function SettingsDrawer() {
   const { settings, update } = useSettings()
+  const fileInputRef = useRef<HTMLInputElement>(null)
+
+  const handleBackup = async () => {
+    const entries = await exportAllEntries()
+    const data = JSON.stringify(entries, null, 2)
+    const blob = new Blob([data], { type: 'application/json' })
+    const url = URL.createObjectURL(blob)
+    const a = document.createElement('a')
+    a.href = url
+    a.download = `time-tracker-backup-${new Date().toISOString().split('T')[0]}.json`
+    document.body.appendChild(a)
+    a.click()
+    document.body.removeChild(a)
+    URL.revokeObjectURL(url)
+  }
+
+  const handleRestoreClick = () => {
+    fileInputRef.current?.click()
+  }
+
+  const handleFileChange = async (e: React.ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files?.[0]
+    if (!file) return
+
+    try {
+      const text = await file.text()
+      const entries = JSON.parse(text)
+      if (!Array.isArray(entries)) {
+        alert('Invalid backup file format.')
+        return
+      }
+      if (
+        !confirm(
+          'This will replace all current data with the backup. Are you sure?'
+        )
+      ) {
+        return
+      }
+      await clearAllEntries()
+      await importEntries(entries)
+      alert('Restore completed successfully.')
+      window.location.reload()
+    } catch {
+      alert('Failed to restore backup. Please check the file format.')
+    } finally {
+      if (fileInputRef.current) fileInputRef.current.value = ''
+    }
+  }
 
   return (
     <Sheet>
@@ -57,6 +108,29 @@ export function SettingsDrawer() {
               checked={settings.darkMode}
               onCheckedChange={(v) => update({ darkMode: v })}
             />
+          </div>
+
+          <Separator />
+
+          <div className="space-y-3">
+            <h3 className="text-sm font-semibold">Data</h3>
+            <div className="flex gap-3">
+              <Button variant="outline" className="flex-1" onClick={handleBackup}>
+                <Download className="mr-2 h-4 w-4" />
+                Backup
+              </Button>
+              <Button variant="outline" className="flex-1" onClick={handleRestoreClick}>
+                <Upload className="mr-2 h-4 w-4" />
+                Restore
+              </Button>
+              <input
+                ref={fileInputRef}
+                type="file"
+                accept="application/json"
+                onChange={handleFileChange}
+                className="hidden"
+              />
+            </div>
           </div>
         </div>
       </SheetContent>
