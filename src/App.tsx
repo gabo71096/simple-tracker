@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { ExternalLink } from "@/components/ExternalLink";
+import { AppFooter } from "@/components/AppFooter";
 import { HistoryDrawer } from "@/components/HistoryDrawer";
 import { LiveClock } from "@/components/LiveClock";
 import { ManualEntryForm } from "@/components/ManualEntryForm";
@@ -112,14 +112,7 @@ function App() {
 				<Timeline entries={entries} onUpdate={updateEntry} />
 				<ManualEntryForm onAdded={refresh} />
 
-				<footer className="py-6 text-center text-xs text-muted-foreground">
-					<ExternalLink
-						href="https://gl-labs.dev"
-						className="hover:text-foreground hover:underline transition-colors"
-					>
-						Powered by GL Labs
-					</ExternalLink>
-				</footer>
+				<AppFooter />
 			</div>
 		</div>
 	);

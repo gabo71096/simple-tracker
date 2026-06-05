@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { Clock, Download, Globe, MapPin, Shield, Smartphone } from "lucide-react";
-import { SiGithub } from "@icons-pack/react-simple-icons";
 import mockup from "../videos/mobile-mockup.mp4";
+import { AppFooter } from "@/components/AppFooter";
 import { ExternalLink } from "@/components/ExternalLink";
 import { Link } from "@/components/Link";
 import BackgroundVideo from "next-video/background-video";
@@ -126,25 +126,7 @@ export default function HomePage() {
 			</section>
 
 			{/* Footer */}
-			<footer className="border-t px-4 py-8 text-center text-sm text-muted-foreground space-y-2">
-				<p>
-					Simple Tracker — free, offline, and private. Built by{" "}
-					<ExternalLink
-						href="https://gl-labs.dev"
-						className="hover:text-foreground hover:underline transition-colors"
-					>
-						GL Labs
-					</ExternalLink>
-					.
-				</p>
-				<ExternalLink
-					href="https://github.com/gabo71096/simple-tracker"
-					className="inline-flex items-center gap-1 hover:text-foreground transition-colors"
-				>
-					<SiGithub className="h-4 w-4" />
-					<span>View on GitHub</span>
-				</ExternalLink>
-			</footer>
+			<AppFooter />
 		</div>
 	);
 }
