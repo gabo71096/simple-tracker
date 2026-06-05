@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import { Clock, Download, Globe, MapPin, Shield, Smartphone } from "lucide-react";
 import { SiGithub } from "@icons-pack/react-simple-icons";
 import Video from "next-video";
-import mockup from "/videos/mobile-mockup.mp4";
+import mockup from "../videos/mobile-mockup.mp4";
 import { ExternalLink } from "@/components/ExternalLink";
 import { Link } from "@/components/Link";
 import Iphone15Pro from "@/components/ui/iphone-15-pro";
