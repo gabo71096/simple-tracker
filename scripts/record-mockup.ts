@@ -1,7 +1,7 @@
-import { chromium } from "playwright";
 import { execSync } from "node:child_process";
 import { readdirSync } from "node:fs";
 import { join } from "node:path";
+import { chromium } from "playwright";
 
 const DEV_SERVER_URL = "http://localhost:3000/app";
 const VIDEO_OUTPUT = "videos/mobile-mockup.mp4";

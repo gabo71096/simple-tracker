@@ -8,7 +8,10 @@ export function KoFiWidget() {
 			src="https://storage.ko-fi.com/cdn/scripts/overlay-widget.js"
 			strategy="afterInteractive"
 			onLoad={() => {
-				if (typeof window !== "undefined" && (window as any).kofiWidgetOverlay) {
+				if (
+					typeof window !== "undefined" &&
+					(window as any).kofiWidgetOverlay
+				) {
 					(window as any).kofiWidgetOverlay.draw("gabo_71096", {
 						type: "floating-chat",
 						"floating-chat.donateButton.text": "Support me",

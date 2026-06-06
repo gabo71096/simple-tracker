@@ -8,7 +8,8 @@ export const metadata: Metadata = {
 		template: "%s | Simple Tracker",
 		default: "Simple Tracker",
 	},
-	description: "Simple Tracker is a free, offline, privacy-first time tracking app.",
+	description:
+		"Simple Tracker is a free, offline, privacy-first time tracking app.",
 	keywords: [
 		"time tracker",
 		"offline time tracking",

@@ -1,12 +1,19 @@
+import {
+	Clock,
+	Download,
+	Globe,
+	MapPin,
+	Shield,
+	Smartphone,
+} from "lucide-react";
 import type { Metadata } from "next";
-import { Clock, Download, Globe, MapPin, Shield, Smartphone } from "lucide-react";
-import mockup from "../videos/mobile-mockup.mp4";
+import BackgroundVideo from "next-video/background-video";
 import { AppFooter } from "@/components/AppFooter";
 import { ExternalLink } from "@/components/ExternalLink";
 import { Link } from "@/components/Link";
-import { KoFiWidget } from "./components/KoFiWidget";
-import BackgroundVideo from "next-video/background-video";
 import Iphone15Pro from "@/components/ui/iphone-15-pro";
+import mockup from "../videos/mobile-mockup.mp4";
+import { KoFiWidget } from "./components/KoFiWidget";
 
 export const metadata: Metadata = {
 	title: "Track your time, offline",
@@ -36,9 +43,9 @@ export default function HomePage() {
 							<span className="text-primary">privately.</span>
 						</h1>
 						<p className="text-lg text-muted-foreground max-w-lg mx-auto lg:mx-0">
-							Simple Tracker is a free, offline, privacy-first time tracking app.
-							No account. No cloud. Just your data, on your device. Optionally
-							tag your entries with your current location.
+							Simple Tracker is a free, offline, privacy-first time tracking
+							app. No account. No cloud. Just your data, on your device.
+							Optionally tag your entries with your current location.
 						</p>
 						<div className="flex items-center justify-center lg:justify-start gap-4">
 							<Link

@@ -1,11 +1,11 @@
 import type { NextConfig } from "next";
 import { withNextVideo } from "next-video/process";
 
-const isDev = process.env.NODE_ENV === "development";	
+const isDev = process.env.NODE_ENV === "development";
 
 const csp = [
 	"default-src 'self'",
-	`script-src 'self' 'unsafe-inline' ${isDev ? 'unsafe-eval' : ''} https://storage.ko-fi.com https://www.gstatic.com`,
+	`script-src 'self' 'unsafe-inline' ${isDev ? "unsafe-eval" : ""} https://storage.ko-fi.com https://www.gstatic.com`,
 	"style-src 'self' 'unsafe-inline'",
 	"img-src 'self' data: https://image.mux.com",
 	"media-src 'self' blob: https://stream.mux.com",
@@ -19,7 +19,7 @@ const csp = [
 	"form-action 'self'",
 	"frame-ancestors 'none'",
 	"upgrade-insecure-requests",
-].join("; ")
+].join("; ");
 
 const nextConfig: NextConfig = {
 	reactStrictMode: true,
