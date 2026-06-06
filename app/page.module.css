@@ -1,3 +1,6 @@
+/** biome-ignore-all lint/correctness/noUnknownPseudoClass: necessary for capturing class before hashing */
+/** biome-ignore-all lint/complexity/noImportantStyles: overriding tailwind styles */
+
 .phoneMockup {
 	filter: drop-shadow(0 25px 25px rgb(0 0 0 / 0.15));
 }

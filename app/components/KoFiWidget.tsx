@@ -1,3 +1,5 @@
+/** biome-ignore-all lint/suspicious/noExplicitAny: necessary for js script */
+
 "use client";
 
 import Script from "next/script";
