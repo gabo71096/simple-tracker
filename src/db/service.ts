@@ -103,7 +103,7 @@ export async function importEntries(
 	entries: Omit<TimeEntry, "id">[],
 ): Promise<void> {
 	try {
-		await db.entries.bulkAdd(entries as TimeEntry[]);
+		await db.entries.bulkAdd(entries);
 	} catch (e) {
 		handleDbError("importing entries", e);
 	}
