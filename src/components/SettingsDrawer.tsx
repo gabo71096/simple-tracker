@@ -12,6 +12,7 @@ import {
 } from "@/components/ui/sheet";
 import { Switch } from "@/components/ui/switch";
 import { clearAllEntries, exportAllEntries, importEntries } from "@/db/service";
+import { backupSchema } from "@/db/validation";
 import { useSettings } from "@/hooks/useSettings";
 
 export function SettingsDrawer() {
@@ -42,9 +43,10 @@ export function SettingsDrawer() {
 
 		try {
 			const text = await file.text();
-			const entries = JSON.parse(text);
-			if (!Array.isArray(entries)) {
-				alert("Invalid backup file format.");
+			const parsed = JSON.parse(text);
+			const result = backupSchema.safeParse(parsed);
+			if (!result.success) {
+				alert(`Invalid backup file: ${result.error.message}`);
 				return;
 			}
 			if (
@@ -55,7 +57,7 @@ export function SettingsDrawer() {
 				return;
 			}
 			await clearAllEntries();
-			await importEntries(entries);
+			await importEntries(result.data);
 			alert("Restore completed successfully.");
 			window.location.reload();
 		} catch {
