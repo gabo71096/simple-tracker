@@ -2,6 +2,7 @@ packages:
   - '.'
 allowBuilds:
   esbuild: true
+  msw: true
 onlyBuiltDependencies:
   - esbuild
   - msw
