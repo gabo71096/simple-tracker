@@ -41,6 +41,9 @@
   - `/` — Landing page (Server Component, SEO-optimized)
   - `/track` — Tracker app (Client Component, Dexie/IndexedDB)
 - **PWA**: service worker registered in `app/components/ServiceWorkerRegister.tsx`, runtime caching in `public/sw.js`, manifest in `public/manifest.json`
+  - `public/sw.js` is **generated** at build time from `public/sw.template.js` via `scripts/generate-sw.js` (run automatically by `predev`/`prebuild` hooks). It is gitignored.
+  - The template bakes in a `__BUILD_TIMESTAMP__` that becomes `Date.now()` on every build. This ensures each deployment gets a unique cache name and old caches are purged automatically.
+  - The service worker **skips cross-origin requests** (e.g. Ko-fi widget, Mux video streams) so they are never intercepted or cached.
 - **No backend API.** All data is local-only via Dexie (IndexedDB wrapper).
 - Database schema: `src/db/index.ts` (Dexie v1, table `entries` with indexes `++id, date, type`)
 - Path alias: `@/` → `./src` (Next.js + TS both configured)
