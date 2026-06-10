@@ -6,6 +6,7 @@ const STATIC_ASSETS = [
 	"/icon.svg",
 	"/icon-192.png",
 	"/icon-512.png",
+	"/favicon.ico",
 ];
 
 const RUNTIME_CACHE = "simple-tracker-runtime-v2";
