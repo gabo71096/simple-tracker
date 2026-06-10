@@ -23,18 +23,9 @@ export const metadata: Metadata = {
 		type: "website",
 		locale: "en_US",
 		siteName: "Simple Tracker",
-		images: [
-			{
-				url: "/icon-512.png",
-				width: 512,
-				height: 512,
-				alt: "Simple Tracker",
-			},
-		],
 	},
 	twitter: {
 		card: "summary_large_image",
-		images: ["/icon-512.png"],
 	},
 	icons: {
 		icon: "/icon.svg",
