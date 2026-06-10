@@ -10,7 +10,6 @@ import type { Metadata } from "next";
 import BackgroundVideo from "next-video/background-video";
 import { AppFooter } from "@/components/AppFooter";
 import { ExternalLink } from "@/components/ExternalLink";
-import { Link } from "@/components/Link";
 import Iphone15Pro from "@/components/ui/iphone-15-pro";
 import mockup from "../videos/mobile-mockup.mp4";
 import { KoFiWidget } from "./components/KoFiWidget";
@@ -48,12 +47,12 @@ export default function HomePage() {
 							Optionally tag your entries with your current location.
 						</p>
 						<div className="flex items-center justify-center lg:justify-start gap-4">
-							<Link
+							<ExternalLink
 								href="/track"
 								className="inline-flex items-center justify-center rounded-lg bg-primary px-6 py-3 text-sm font-medium text-primary-foreground shadow hover:bg-primary/80 transition-colors"
 							>
 								Open App
-							</Link>
+							</ExternalLink>
 							<ExternalLink
 								href="https://github.com/gabo71096/simple-tracker"
 								className="inline-flex items-center justify-center rounded-lg border bg-background px-6 py-3 text-sm font-medium hover:bg-muted transition-colors"
