@@ -3,7 +3,7 @@ import { readdirSync } from "node:fs";
 import { join } from "node:path";
 import { chromium } from "playwright";
 
-const DEV_SERVER_URL = "http://localhost:3000/app";
+const DEV_SERVER_URL = "http://localhost:3000/track";
 const VIDEO_OUTPUT = "videos/mobile-mockup.mp4";
 const RECORDINGS_DIR = "/tmp/st-mockup-recordings";
 

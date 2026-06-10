@@ -49,7 +49,7 @@ export default function HomePage() {
 						</p>
 						<div className="flex items-center justify-center lg:justify-start gap-4">
 							<Link
-								href="/app"
+								href="/track"
 								className="inline-flex items-center justify-center rounded-lg bg-primary px-6 py-3 text-sm font-medium text-primary-foreground shadow hover:bg-primary/80 transition-colors"
 							>
 								Open App

@@ -45,11 +45,11 @@ export default function RootLayout({
 }: Readonly<{ children: React.ReactNode }>) {
 	return (
 		<html lang="en">
-		<body>
-			{children}
-			<Analytics />
-		</body>
-		<ServiceWorkerRegister />
+			<body>
+				{children}
+				<Analytics />
+			</body>
+			<ServiceWorkerRegister />
 		</html>
 	);
 }

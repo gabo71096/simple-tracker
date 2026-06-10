@@ -2,7 +2,7 @@
 	"name": "Simple Tracker",
 	"short_name": "Tracker",
 	"description": "Simple offline time tracking app",
-	"start_url": "/app",
+	"start_url": "/track",
 	"display": "standalone",
 	"background_color": "#f8fafc",
 	"theme_color": "#0f172a",

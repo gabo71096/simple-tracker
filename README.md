@@ -2,7 +2,7 @@
 
 A free, privacy-first, offline-capable time tracking Progressive Web App (PWA). No account required. All data stays on your device.
 
-[Open App](https://simple-tracker.app/app) · [View Demo](https://simple-tracker.app) · [Report Bug](../../issues)
+[Open App](https://simple-tracker.app/track) · [View Demo](https://simple-tracker.app) · [Report Bug](../../issues)
 
 [![ko-fi](https://ko-fi.com/img/githubbutton_sm.svg)](https://ko-fi.com/Q4U620VGO8)
 
@@ -109,7 +109,7 @@ pnpm start
 ## Architecture Overview
 
 - **Landing Page (`/`)** — Server-rendered for SEO. Includes a hero section with a video mockup, feature grid, and "How it works" steps.
-- **Tracker App (`/app`)** — Client-side route rendering the main dashboard. All interactivity and state management happen here.
+- **Tracker App (`/track`)** — Client-side route rendering the main dashboard. All interactivity and state management happen here.
 - **No Backend API** — The app is fully static after build. All data is local-only via Dexie/IndexedDB.
 - **PWA** — The service worker pre-caches static assets and uses runtime caching for Next.js chunks, enabling offline usage after the first visit.
 - **Geolocation** — Gated behind a user setting. When disabled, no location data is requested or stored.

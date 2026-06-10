@@ -39,7 +39,7 @@
 
 - **Next.js App Router**.
   - `/` — Landing page (Server Component, SEO-optimized)
-  - `/app` — Tracker app (Client Component, Dexie/IndexedDB)
+  - `/track` — Tracker app (Client Component, Dexie/IndexedDB)
 - **PWA**: service worker registered in `app/components/ServiceWorkerRegister.tsx`, runtime caching in `public/sw.js`, manifest in `public/manifest.json`
 - **No backend API.** All data is local-only via Dexie (IndexedDB wrapper).
 - Database schema: `src/db/index.ts` (Dexie v1, table `entries` with indexes `++id, date, type`)

@@ -5,7 +5,7 @@ export default function robots(): MetadataRoute.Robots {
 		rules: {
 			userAgent: "*",
 			allow: "/",
-			disallow: "/app",
+			disallow: "/track",
 		},
 		sitemap: "https://simple-tracker.app/sitemap.xml",
 	};

@@ -1,7 +1,7 @@
 const CACHE_NAME = "simple-tracker-v2";
 const STATIC_ASSETS = [
 	"/",
-	"/app",
+	"/track",
 	"/manifest.json",
 	"/icon.svg",
 	"/icon-192.png",
@@ -59,7 +59,7 @@ self.addEventListener("fetch", (event) => {
 		return;
 	}
 
-	// Navigation requests: network-first, fallback to cache then /app
+	// Navigation requests: network-first, fallback to cache then /track
 	if (request.mode === "navigate") {
 		event.respondWith(
 			fetch(request)
@@ -71,7 +71,7 @@ self.addEventListener("fetch", (event) => {
 				.catch(() =>
 					caches.match(request).then((cached) => {
 						if (cached) return cached;
-						return caches.match("/app");
+						return caches.match("/track");
 					}),
 				),
 		);
