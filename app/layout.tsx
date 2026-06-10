@@ -1,5 +1,6 @@
 import type { Metadata, Viewport } from "next";
 import "./globals.css";
+import { Analytics } from "@vercel/analytics/next";
 import { ServiceWorkerRegister } from "./components/ServiceWorkerRegister";
 
 export const metadata: Metadata = {
@@ -44,8 +45,11 @@ export default function RootLayout({
 }: Readonly<{ children: React.ReactNode }>) {
 	return (
 		<html lang="en">
-			<body>{children}</body>
-			<ServiceWorkerRegister />
+		<body>
+			{children}
+			<Analytics />
+		</body>
+		<ServiceWorkerRegister />
 		</html>
 	);
 }
