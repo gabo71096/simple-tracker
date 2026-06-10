@@ -30,3 +30,6 @@ next-env.d.ts
 # next-video — keep source videos out of git, but commit JSON metadata
 videos/*
 !videos/*.json
+
+# Generated service worker
+public/sw.js
