@@ -18,7 +18,7 @@ A free, privacy-first, offline-capable time tracking Progressive Web App (PWA). 
 - **Manual Entries** — Add missed check-ins or breaks for any past date.
 - **Backup & Restore** — Export your full database to JSON and restore it later.
 - **Dark Mode** — Toggle between light and dark themes.
-- **Works Offline** — Installable PWA with service worker caching. Use it without an internet connection.
+- **Works Offline** — All data is stored locally in your browser. No internet connection required after the initial page load.
 - **Privacy First** — No server, no tracking, no cookies. Everything is stored locally in your browser via IndexedDB.
 
 ---
@@ -33,7 +33,7 @@ A free, privacy-first, offline-capable time tracking Progressive Web App (PWA). 
 - **Database:** [Dexie.js](https://dexie.org/) (IndexedDB wrapper)
 - **Dates:** [date-fns](https://date-fns.org/)
 - **Linting/Formatting:** [Biome](https://biomejs.dev/) (replaces ESLint + Prettier)
-- **PWA:** Custom service worker + web manifest
+- **PWA:** Minimal service worker (installability only) + web manifest
 - **Video:** [next-video](https://next-video.dev/) (Mux-backed)
 
 ---
@@ -93,7 +93,7 @@ pnpm start
 │   └── global.d.ts
 ├── public/                  # Static assets
 │   ├── manifest.json        # PWA manifest
-│   ├── sw.js                # Custom service worker
+│   ├── sw.js                # Minimal service worker (installability only)
 │   └── icon-*.png           # App icons
 ├── videos/                  # Video assets for landing page
 ├── scripts/
@@ -111,7 +111,7 @@ pnpm start
 - **Landing Page (`/`)** — Server-rendered for SEO. Includes a hero section with a video mockup, feature grid, and "How it works" steps.
 - **Tracker App (`/track`)** — Client-side route rendering the main dashboard. All interactivity and state management happen here.
 - **No Backend API** — The app is fully static after build. All data is local-only via Dexie/IndexedDB.
-- **PWA** — The service worker pre-caches static assets and uses runtime caching for Next.js chunks, enabling offline usage after the first visit.
+- **PWA** — A minimal service worker enables the "Add to Home Screen" prompt on Chrome/Android. It does not cache or intercept network requests.
 - **Geolocation** — Gated behind a user setting. When disabled, no location data is requested or stored.
 
 ---
@@ -149,8 +149,8 @@ Dexie v1 database with a single `entries` table:
 Simple Tracker is designed to work offline:
 
 1. **Install** — Add it to your home screen from the browser menu.
-2. **Use Offline** — Once visited, the app caches its assets and continues to function without a network connection.
-3. **Data Persistence** — All your entries are stored in the browser's IndexedDB and survive browser restarts.
+2. **Data Persistence** — All your entries are stored in the browser's IndexedDB and survive browser restarts.
+3. **No Service Worker Caching** — The app loads fresh from the network on each visit. No stale cache issues. The service worker is a minimal pass-through that only enables the PWA install prompt on Chrome/Android.
 
 ---
 
