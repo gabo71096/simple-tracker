@@ -6,7 +6,7 @@ import { ExternalLink } from "@/components/ExternalLink";
 export function AppFooter() {
 	return (
 		<footer className="border-t px-4 py-8 text-center text-sm text-muted-foreground space-y-2">
-			<p>Simple Tracker — free, offline, and private.</p>
+			<p>Simple Tracker — free, local, and private.</p>
 			<ExternalLink
 				href="https://github.com/gabo71096/simple-tracker"
 				className="inline-flex items-center gap-1 hover:text-foreground transition-colors"
