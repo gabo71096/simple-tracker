@@ -15,13 +15,13 @@ import mockup from "../videos/mobile-mockup.mp4";
 import { KoFiWidget } from "./components/KoFiWidget";
 
 export const metadata: Metadata = {
-	title: "Track your time, offline",
+	title: "Track your time, locally",
 	description:
-		"A free, privacy-first time tracking app that works offline. No account required.",
+		"A free, privacy-first time tracking app that keeps your data local. No account required.",
 	openGraph: {
-		title: "Track your time, offline | Simple Tracker",
+		title: "Track your time, locally | Simple Tracker",
 		description:
-			"A free, privacy-first time tracking app that works offline. No account required.",
+			"A free, privacy-first time tracking app that keeps your data local. No account required.",
 	},
 };
 
@@ -42,8 +42,8 @@ export default function HomePage() {
 							<span className="text-primary">privately.</span>
 						</h1>
 						<p className="text-lg text-muted-foreground max-w-lg mx-auto lg:mx-0">
-							Simple Tracker is a free, offline, privacy-first time tracking
-							app. No account. No cloud. Just your data, on your device.
+							Simple Tracker is a free, privacy-first time tracking app.
+							Your data stays on your device — no cloud, no servers.
 							Optionally tag your entries with your current location.
 						</p>
 						<div className="flex items-center justify-center lg:justify-start gap-4">
@@ -84,8 +84,8 @@ export default function HomePage() {
 						/>
 						<FeatureCard
 							icon={<Globe className="h-6 w-6" />}
-							title="Works Offline"
-							description="Track your hours anywhere, even without an internet connection."
+							title="Local Data"
+							description="All your data is stored on your device. No servers, no cloud, no internet needed."
 						/>
 						<FeatureCard
 							icon={<MapPin className="h-6 w-6" />}
