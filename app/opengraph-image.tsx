@@ -2,7 +2,7 @@ import { readFile } from "node:fs/promises";
 import { join } from "node:path";
 import { ImageResponse } from "next/og";
 
-export const alt = "Simple Tracker - Track your time, offline";
+export const alt = "Simple Tracker - Track your time, locally";
 export const size = {
 	width: 1200,
 	height: 630,
@@ -91,7 +91,7 @@ export default async function Image() {
 						color: "#94a3b8",
 					}}
 				>
-					Track your time, offline. No account required.
+					Track your time locally. No account required.
 				</div>
 			</div>
 		</div>,
