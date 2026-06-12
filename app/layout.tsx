@@ -10,10 +10,10 @@ export const metadata: Metadata = {
 		default: "Simple Tracker",
 	},
 	description:
-		"Simple Tracker is a free, offline, privacy-first time tracking app.",
+		"Simple Tracker is a free, privacy-first time tracking app. All data stays on your device.",
 	keywords: [
 		"time tracker",
-		"offline time tracking",
+		"local time tracking",
 		"privacy",
 		"simple tracker",
 		"free time tracking",
