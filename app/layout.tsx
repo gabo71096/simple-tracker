@@ -62,8 +62,6 @@ export default function RootLayout({
 								const parsed = JSON.parse(raw);
 								if (parsed.theme === "light" || parsed.theme === "dark") {
 									theme = parsed.theme;
-								} else if (typeof parsed.darkMode === "boolean") {
-									theme = parsed.darkMode ? "dark" : "system";
 								}
 							}
 							const isDark =
