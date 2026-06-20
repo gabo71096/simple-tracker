@@ -1,4 +1,5 @@
 import type { Metadata, Viewport } from "next";
+import Script from "next/script";
 import "./globals.css";
 import { Analytics } from "@vercel/analytics/next";
 import { ServiceWorkerRegister } from "./components/ServiceWorkerRegister";
@@ -51,6 +52,29 @@ export default function RootLayout({
 				{children}
 				<Analytics />
 			</body>
+			<Script id="theme-script" strategy="beforeInteractive">
+				{`
+					(function () {
+						try {
+							const raw = localStorage.getItem("tt-settings");
+							let theme = "system";
+							if (raw) {
+								const parsed = JSON.parse(raw);
+								if (parsed.theme === "light" || parsed.theme === "dark") {
+									theme = parsed.theme;
+								} else if (typeof parsed.darkMode === "boolean") {
+									theme = parsed.darkMode ? "dark" : "system";
+								}
+							}
+							const isDark =
+								theme === "dark" ||
+								(theme === "system" &&
+									window.matchMedia("(prefers-color-scheme: dark)").matches);
+							document.documentElement.classList.toggle("dark", isDark);
+						} catch {}
+					})();
+				`}
+			</Script>
 			<ServiceWorkerRegister />
 		</html>
 	);
