@@ -135,11 +135,14 @@ export function HistoryDrawer() {
 						</p>
 					)}
 
-					{!historyError && !historyLoading && hasHistory && Object.keys(grouped).length === 0 && (
-						<p className="text-sm text-muted-foreground text-center py-8">
-							No entries for the selected period.
-						</p>
-					)}
+					{!historyError &&
+						!historyLoading &&
+						hasHistory &&
+						Object.keys(grouped).length === 0 && (
+							<p className="text-sm text-muted-foreground text-center py-8">
+								No entries for the selected period.
+							</p>
+						)}
 
 					{Object.entries(grouped).map(([date, dayEntries]) => (
 						<div key={date}>
