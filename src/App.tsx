@@ -22,6 +22,7 @@ function App() {
 	const [processing, setProcessing] = useState(false);
 
 	const summary = calculateDailySummary(entries);
+	const earnings = (settings.hourlyRate * summary.totalWorkSeconds) / 3600;
 
 	const withProcessing = (fn: () => Promise<void>) => async () => {
 		setProcessing(true);
@@ -92,6 +93,15 @@ function App() {
 							/>
 						</div>
 
+						<div className="rounded-lg bg-secondary p-3 text-center">
+							<div className="text-lg font-semibold tabular-nums">
+								{settings.hourlyRate > 0
+									? formatLocaleCurrency(earnings)
+									: "--"}
+							</div>
+							<div className="text-xs text-muted-foreground">Earnings</div>
+						</div>
+
 						<div className="space-y-3">
 							<PrimaryActionButton
 								status={status}
@@ -125,6 +135,34 @@ function StatCard({ label, value }: { label: string; value: string }) {
 			<div className="text-xs text-muted-foreground">{label}</div>
 		</div>
 	);
+}
+
+function formatLocaleCurrency(value: number): string {
+	// ponytail: incomplete locale-to-currency map; upgrade to a currency picker if users need more locales
+	const locale =
+		typeof navigator !== "undefined" ? navigator.language : "en-US";
+	const currency =
+		(
+			{
+				"en-US": "USD",
+				"en-GB": "GBP",
+				"en-CA": "CAD",
+				"en-AU": "AUD",
+				"de-DE": "EUR",
+				"fr-FR": "EUR",
+				"es-ES": "EUR",
+				"it-IT": "EUR",
+				"pt-BR": "BRL",
+				"ja-JP": "JPY",
+				"zh-CN": "CNY",
+				"ko-KR": "KRW",
+			} as Record<string, string>
+		)[locale] ?? "USD";
+
+	return new Intl.NumberFormat(undefined, {
+		style: "currency",
+		currency,
+	}).format(value);
 }
 
 export default App;

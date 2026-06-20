@@ -3,11 +3,13 @@ import { useEffect, useState } from "react";
 interface Settings {
 	geoEnabled: boolean;
 	darkMode: boolean;
+	hourlyRate: number;
 }
 
 const defaultSettings: Settings = {
 	geoEnabled: false,
 	darkMode: false,
+	hourlyRate: 0,
 };
 
 export function useSettings() {

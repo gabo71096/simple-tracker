@@ -1,6 +1,7 @@
 import { Download, Settings, Upload } from "lucide-react";
 import { useRef } from "react";
 import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Separator } from "@/components/ui/separator";
 import {
@@ -111,6 +112,31 @@ export function SettingsDrawer() {
 							id="dark-toggle"
 							checked={settings.darkMode}
 							onCheckedChange={(v) => update({ darkMode: v })}
+						/>
+					</div>
+
+					<div className="flex items-center justify-between rounded-lg border p-4">
+						<div className="space-y-0.5">
+							<Label htmlFor="hourly-rate" className="text-base">
+								Hourly Rate
+							</Label>
+							<p className="text-sm text-muted-foreground">
+								Used to estimate earnings on the dashboard.
+							</p>
+						</div>
+						<Input
+							id="hourly-rate"
+							type="number"
+							min="0"
+							step="0.01"
+							value={settings.hourlyRate || ""}
+							onChange={(e) => {
+								const value = Number.parseFloat(e.target.value);
+								update({
+									hourlyRate: Number.isNaN(value) || value < 0 ? 0 : value,
+								});
+							}}
+							className="w-28 text-right"
 						/>
 					</div>
 
