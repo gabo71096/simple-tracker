@@ -82,7 +82,7 @@ export function SettingsDrawer() {
 					<SheetTitle>Settings</SheetTitle>
 				</SheetHeader>
 
-				<div className="mt-6 space-y-6">
+				<div className="space-y-6">
 					<div className="flex items-center justify-between rounded-lg border p-4">
 						<div className="space-y-0.5">
 							<Label htmlFor="geo-toggle" className="text-base">
