@@ -27,9 +27,9 @@ export const metadata: Metadata = {
 
 export default function HomePage() {
 	return (
-		<div className="min-h-screen flex flex-col">
+		<div className="min-h-svh flex flex-col">
 			{/* Hero */}
-			<section className="flex-1 flex flex-col items-center justify-center px-4 py-20">
+			<section className="flex flex-col items-center justify-center px-4 py-12 md:py-20">
 				<div className="mx-auto max-w-6xl grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
 					<div className="space-y-6 text-center lg:text-left">
 						<div className="inline-flex items-center gap-2 rounded-full border bg-secondary px-4 py-1.5 text-sm font-medium text-secondary-foreground">
@@ -71,7 +71,7 @@ export default function HomePage() {
 			</section>
 
 			{/* Features */}
-			<section className="border-t bg-secondary/50 px-4 py-20">
+			<section className="border-t bg-secondary/50 px-4 py-12 md:py-20">
 				<div className="mx-auto max-w-5xl">
 					<h2 className="text-center text-3xl font-bold tracking-tight mb-12">
 						Why Simple Tracker?
@@ -107,7 +107,7 @@ export default function HomePage() {
 			</section>
 
 			{/* How it works */}
-			<section className="px-4 py-20">
+			<section className="px-4 py-12 md:py-20">
 				<div className="mx-auto max-w-3xl">
 					<h2 className="text-center text-3xl font-bold tracking-tight mb-12">
 						How it works
