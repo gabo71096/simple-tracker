@@ -72,8 +72,11 @@ export async function getAllDates(): Promise<string[]> {
 	try {
 		const dates = await db.entries.orderBy("date").uniqueKeys();
 		return dates as string[];
-	} catch (e) {
-		handleDbError("fetching dates", e);
+	} catch {
+		// ponytail: WebKit on iOS (Safari and Chrome-on-iOS) can throw on index
+		// cursors. Fallback scans the table and computes unique dates in JS.
+		const all = await db.entries.toArray();
+		return [...new Set(all.map((entry) => entry.date))].sort();
 	}
 }
 
