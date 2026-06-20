@@ -42,9 +42,9 @@ export default function HomePage() {
 							<span className="text-primary">privately.</span>
 						</h1>
 						<p className="text-lg text-muted-foreground max-w-lg mx-auto lg:mx-0">
-							Simple Tracker is a free, privacy-first time tracking app.
-							Your data stays on your device — no cloud, no servers.
-							Optionally tag your entries with your current location.
+							Simple Tracker is a free, privacy-first time tracking app. Your
+							data stays on your device — no cloud, no servers. Optionally tag
+							your entries with your current location.
 						</p>
 						<div className="flex items-center justify-center lg:justify-start gap-4">
 							<ExternalLink
