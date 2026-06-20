@@ -47,15 +47,24 @@ export function HistoryDrawer() {
 	const [preset, setPreset] = useState<DatePreset>("today");
 	const [entries, setEntries] = useState<TimeEntry[]>([]);
 	const [hasHistory, setHasHistory] = useState(false);
+	const [historyLoading, setHistoryLoading] = useState(false);
+	const [historyError, setHistoryError] = useState<string | null>(null);
 
 	useEffect(() => {
-		getAllDates().then((dates) => setHasHistory(dates.length > 0));
-	}, []);
-
-	useEffect(() => {
+		if (!open) return;
+		setHistoryLoading(true);
+		setHistoryError(null);
 		const { start, end } = getDateRange(preset);
-		getEntriesBetween(start, end).then(setEntries);
-	}, [preset]);
+		Promise.all([
+			getAllDates().then((dates) => setHasHistory(dates.length > 0)),
+			getEntriesBetween(start, end).then(setEntries),
+		])
+			.catch((e) => {
+				console.error("Failed to load history:", e);
+				setHistoryError("Could not load history. Please try again.");
+			})
+			.finally(() => setHistoryLoading(false));
+	}, [open, preset]);
 
 	const handleDownload = () => {
 		const { start, end } = getDateRange(preset);
@@ -108,13 +117,25 @@ export function HistoryDrawer() {
 						)}
 					</div>
 
-					{!hasHistory && (
+					{historyError && (
+						<p className="text-sm text-destructive text-center py-8">
+							{historyError}
+						</p>
+					)}
+
+					{!historyError && historyLoading && (
+						<p className="text-sm text-muted-foreground text-center py-8">
+							Loading history...
+						</p>
+					)}
+
+					{!historyError && !historyLoading && !hasHistory && (
 						<p className="text-sm text-muted-foreground text-center py-8">
 							No history yet. Start tracking your time!
 						</p>
 					)}
 
-					{Object.keys(grouped).length === 0 && hasHistory && (
+					{!historyError && !historyLoading && hasHistory && Object.keys(grouped).length === 0 && (
 						<p className="text-sm text-muted-foreground text-center py-8">
 							No entries for the selected period.
 						</p>
