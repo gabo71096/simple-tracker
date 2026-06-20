@@ -14,7 +14,9 @@ const defaultSettings: Settings = {
 	hourlyRate: 0,
 };
 
-function migrateLegacyTheme(stored: Record<string, unknown>): Partial<Settings> {
+function migrateLegacyTheme(
+	stored: Record<string, unknown>,
+): Partial<Settings> {
 	if ("theme" in stored && stored.theme !== undefined) {
 		return { theme: stored.theme as Theme };
 	}
