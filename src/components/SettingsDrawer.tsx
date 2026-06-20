@@ -1,8 +1,15 @@
-import { Download, Settings, Upload } from "lucide-react";
+import { Download, Monitor, Moon, Settings, Sun, Upload } from "lucide-react";
 import { useRef } from "react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
+import {
+	Select,
+	SelectContent,
+	SelectItem,
+	SelectTrigger,
+	SelectValue,
+} from "@/components/ui/select";
 import { Separator } from "@/components/ui/separator";
 import {
 	Sheet,
@@ -14,7 +21,7 @@ import {
 import { Switch } from "@/components/ui/switch";
 import { clearAllEntries, exportAllEntries, importEntries } from "@/db/service";
 import { backupSchema } from "@/db/validation";
-import { useSettings } from "@/hooks/useSettings";
+import { type Theme, useSettings } from "@/hooks/useSettings";
 
 export function SettingsDrawer() {
 	const { settings, update } = useSettings();
@@ -101,18 +108,35 @@ export function SettingsDrawer() {
 
 					<div className="flex items-center justify-between rounded-lg border p-4">
 						<div className="space-y-0.5">
-							<Label htmlFor="dark-toggle" className="text-base">
-								Dark Mode
+							<Label htmlFor="theme-select" className="text-base">
+								Theme
 							</Label>
 							<p className="text-sm text-muted-foreground">
-								Use dark color scheme.
+								Match system, light, or dark.
 							</p>
 						</div>
-						<Switch
-							id="dark-toggle"
-							checked={settings.darkMode}
-							onCheckedChange={(v) => update({ darkMode: v })}
-						/>
+						<Select
+							value={settings.theme}
+							onValueChange={(v) => update({ theme: v as Theme })}
+						>
+							<SelectTrigger id="theme-select" className="w-32">
+								<SelectValue />
+							</SelectTrigger>
+							<SelectContent>
+								<SelectItem value="system">
+									<Monitor className="h-4 w-4" />
+									System
+								</SelectItem>
+								<SelectItem value="light">
+									<Sun className="h-4 w-4" />
+									Light
+								</SelectItem>
+								<SelectItem value="dark">
+									<Moon className="h-4 w-4" />
+									Dark
+								</SelectItem>
+							</SelectContent>
+						</Select>
 					</div>
 
 					<div className="flex items-center justify-between rounded-lg border p-4">
