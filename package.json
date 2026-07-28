@@ -21,7 +21,7 @@
 		"date-fns": "^4.4.0",
 		"dexie": "^4.4.3",
 		"lucide-react": "^1.17.0",
-		"next": "^16.2.9",
+		"next": "^16.2.11",
 		"next-video": "^2.8.1",
 		"react": "^19.2.7",
 		"react-dom": "^19.2.7",
@@ -37,7 +37,7 @@
 		"@types/react": "^19.2.17",
 		"@types/react-dom": "^19.2.3",
 		"playwright": "^1.60.0",
-		"sharp": "^0.35.1",
+		"sharp": "^0.35.2",
 		"tailwindcss": "^4.3.0",
 		"tsx": "^4.22.4",
 		"typescript": "~6.0.3"
