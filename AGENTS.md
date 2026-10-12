@@ -39,12 +39,8 @@
 
 - **Next.js App Router**.
   - `/` — Landing page (Server Component, SEO-optimized)
-  - `/track` — Tracker app (Client Component, Dexie/IndexedDB)
-- **PWA**: service worker registered in `app/components/ServiceWorkerRegister.tsx`, minimal pass-through `public/sw.js`, manifest in `public/manifest.json`
-  - The service worker is a **no-op** (no caching). It only satisfies Chrome's PWA install prompt requirement. External resources (Ko-fi widget, Mux video) are never intercepted.
-  - `public/sw.js` is a static file (not generated). It does not cache or intercept network requests.
-- **No backend API.** All data is local-only via Dexie (IndexedDB wrapper).
-- Database schema: `src/db/index.ts` (Dexie v1, table `entries` with indexes `++id, date, type`)
+  - `/privacy` — Privacy policy page
+- **No backend API.**
 - Path alias: `@/` → `./src` (Next.js + TS both configured)
 
 ## UI & Styling
@@ -62,7 +58,5 @@
 
 ## Gotchas
 
-- Geolocation is gated behind a user setting (`useSettings` hook). When disabled, location is not captured.
-- Database errors trigger `alert()` UI messages (quota exceeded, version mismatch).
 - Client Components using React hooks must be marked with `"use client"`.
 - Metadata exports are only allowed in Server Components; use `layout.tsx` for metadata in Client Component routes.
