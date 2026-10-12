@@ -48,12 +48,6 @@ export default function HomePage() {
 						</p>
 						<div className="flex items-center justify-center lg:justify-start gap-4">
 							<ExternalLink
-								href="/track"
-								className="inline-flex items-center justify-center rounded-lg bg-primary px-6 py-3 text-sm font-medium text-primary-foreground shadow hover:bg-primary/80 transition-colors"
-							>
-								Open App
-							</ExternalLink>
-							<ExternalLink
 								href="https://github.com/gabo71096/simple-tracker"
 								className="inline-flex items-center justify-center rounded-lg border bg-background px-6 py-3 text-sm font-medium hover:bg-muted transition-colors"
 							>

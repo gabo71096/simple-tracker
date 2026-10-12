@@ -1,8 +1,6 @@
 import type { Metadata, Viewport } from "next";
-import Script from "next/script";
 import "./globals.css";
 import { Analytics } from "@vercel/analytics/next";
-import { ServiceWorkerRegister } from "./components/ServiceWorkerRegister";
 
 export const metadata: Metadata = {
 	metadataBase: new URL("https://simple-tracker.app"),
@@ -34,7 +32,6 @@ export const metadata: Metadata = {
 		shortcut: "/favicon.ico",
 		apple: "/icon-192.png",
 	},
-	manifest: "/manifest.json",
 };
 
 export const viewport: Viewport = {
@@ -52,28 +49,6 @@ export default function RootLayout({
 				{children}
 				<Analytics />
 			</body>
-			<Script id="theme-script" strategy="beforeInteractive">
-				{`
-					(function () {
-						try {
-							const raw = localStorage.getItem("tt-settings");
-							let theme = "system";
-							if (raw) {
-								const parsed = JSON.parse(raw);
-								if (parsed.theme === "light" || parsed.theme === "dark") {
-									theme = parsed.theme;
-								}
-							}
-							const isDark =
-								theme === "dark" ||
-								(theme === "system" &&
-									window.matchMedia("(prefers-color-scheme: dark)").matches);
-							document.documentElement.classList.toggle("dark", isDark);
-						} catch {}
-					})();
-				`}
-			</Script>
-			<ServiceWorkerRegister />
 		</html>
 	);
 }
