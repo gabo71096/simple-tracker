@@ -9,7 +9,7 @@ import {
 import type { Metadata } from "next";
 import BackgroundVideo from "next-video/background-video";
 import { AppFooter } from "@/components/AppFooter";
-import { ExternalLink } from "@/components/ExternalLink";
+import { StoreBadges } from "@/components/StoreBadges";
 import Iphone15Pro from "@/components/ui/iphone-15-pro";
 import mockup from "../videos/mobile-mockup.mp4";
 import { KoFiWidget } from "./components/KoFiWidget";
@@ -46,14 +46,7 @@ export default function HomePage() {
 							data stays on your device — no cloud, no servers. Optionally tag
 							your entries with your current location.
 						</p>
-						<div className="flex items-center justify-center lg:justify-start gap-4">
-							<ExternalLink
-								href="https://github.com/gabo71096/simple-tracker"
-								className="inline-flex items-center justify-center rounded-lg border bg-background px-6 py-3 text-sm font-medium hover:bg-muted transition-colors"
-							>
-								View on GitHub
-							</ExternalLink>
-						</div>
+						<StoreBadges />
 					</div>
 
 					<div className="hidden lg:flex justify-center">
