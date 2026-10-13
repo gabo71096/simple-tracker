@@ -86,8 +86,8 @@ export default function HomePage() {
 						/>
 						<FeatureCard
 							icon={<Smartphone className="h-6 w-6" />}
-							title="Installable"
-							description="Add it to your home screen as a PWA for quick access."
+							title="Native App"
+							description="Available on the App Store and Google Play."
 						/>
 					</div>
 				</div>
@@ -102,8 +102,8 @@ export default function HomePage() {
 					<div className="grid gap-8 sm:grid-cols-3">
 						<StepCard
 							step="1"
-							title="Open"
-							description="Launch the app in your browser — no signup needed."
+							title="Install"
+							description="Download the app from the App Store or Google Play — no signup needed."
 						/>
 						<StepCard
 							step="2"
